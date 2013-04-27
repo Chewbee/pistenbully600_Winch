@@ -18,10 +18,6 @@
 			<en>Release cable</en>
             <de>Lösen Sie das Kabel</de>
         </text>
-        <text name="ABSCHLEPPSTANGE_ATTACH">
-            <en>chain attach</en>
-            <de>Kette ankuppeln</de>
-        </text>
     </l10n>
     <description>
         <en>PistenBully 600 Polar Winch</en>
@@ -37,9 +33,8 @@
 		<sourceFile filename="scripts/SetAttachEvent.lua" />
 	</extraSourceFiles>
     <specializations>
-		<specialization name="Function" className="Function"	filename="scripts/function.lua"/>
-		<specialization name="towing" className="towing"		filename="scripts/towing.lua"/>
- 		<specialization name="hilkenHI34000MK" className="HilkenHI34000MK" filename="scripts/HilkenHI34000MK.lua"/>
+		<specialization name="towing" className="towing" filename="scripts/towing.lua"/>
+ 		<specialization name="Winch" className="Winch" filename="scripts/Winch.lua"/>
 	</specializations>	
     <vehicleTypes>
         <type name="snowcat_winch" className="Vehicle" filename="$dataS/scripts/vehicles/Vehicle.lua">

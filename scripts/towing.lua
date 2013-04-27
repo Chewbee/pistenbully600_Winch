@@ -2,7 +2,7 @@
 -- towing
 -- Specialization for towing mod
 --
--- @author  Stefan Geiger  / Chew bee just translated that in English 
+-- @author  Stefan Geiger  / Chewbee just translated that in English 
 -- @date  10/01/09
 --
 -- Copyright (C) GIANTS Software GmbH, Confidential, All Rights Reserved.
@@ -50,13 +50,13 @@ function towing:update(dt)
 	if self:getIsActiveForInput() then
 		if self.lastVehicle ~= nil then 
 			if not self.isUsed then
-				if InputBinding.hasEvent(InputBinding.ABSCHLEPPSTANGE_ATTACH) then					
+				if InputBinding.hasEvent(InputBinding.TOWING_ATTACH) then					
 					self:attachObject(self.lastVehicle[1],self.lastVehicle[2],nil);
 				end;
 			end;
 		else
 			if self.isUsed then
-				if InputBinding.hasEvent(InputBinding.ABSCHLEPPSTANGE_ATTACH) then	
+				if InputBinding.hasEvent(InputBinding.TOWING_ATTACH) then	
 					self:detachObject();
 				end;
 			end;
