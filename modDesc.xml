@@ -27,8 +27,7 @@
         <en>PistenBully 600 Polar Winch</en>
         <de>PistenBully 600 Winde Bewegt</de>
 		<fr>
-			<![CDATA[Ce PistenBully est moddé d'après l'original de Giants.
-			Moddé par ChewbeeDoo]]>
+			<![CDATA[Ce PistenBully est moddé d'après l'original de Giants.]]>
 		</fr>
     </description>
     <iconFilename>textures/store.dds</iconFilename>
@@ -70,15 +69,13 @@
             </fr>
             <en>
                 <name>PistenBully 600 Polar W</name>
-                <description>
-<![CDATA[This PistenBully is a PistenBully 600 Standard. The Original PB600 by GIANTS Software is a PistenBully 600 W.]]>
+                <description><![CDATA[This PistenBully is a PistenBully 600 Standard. ]]>
                 </description>
 				<specs>Maintenance: %s / day</specs>
             </en>
             <de>
                 <name>PistenBully 600 Winde Bewegt</name>
-                <description>
-<![CDATA[Bei diesem Pistenbully 600 Polar W ist die Winde mittels Maus bewegbar.]]>
+                <description><![CDATA[Bei diesem Pistenbully 600 Polar W ist die Winde mittels Maus bewegbar.]]>
                 </description>
 				<specs>Unterhaltskosten: %s / Tag</specs>
             </de>
