@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <modDesc descVersion="7">
-   <author>ChewbeeDoo</author>
+   <author>ChewbeeDoo/Wolverine</author>
 	<title>
-		<en>PistenBully 600 Winde Bewegt</en>
+		<en>PistenBully 600 Polar Winch</en>
 		<de>PistenBully 600 Winde Bewegt</de>
-		<fr>PistenBully 600 à Treuil </fr>
+		<fr>PistenBully 600 Polar W </fr>
 	</title>
 	<multiplayer supported="true" />
 	 <l10n>
@@ -24,7 +24,7 @@
         </text>
     </l10n>
     <description>
-        <en>PistenBully 600 Winde Bewegt</en>
+        <en>PistenBully 600 Polar Winch</en>
         <de>PistenBully 600 Winde Bewegt</de>
 		<fr>
 			<![CDATA[Ce PistenBully est moddé d'après l'original de Giants.
@@ -32,7 +32,7 @@
 		</fr>
     </description>
     <iconFilename>textures/store.dds</iconFilename>
-    <version>1</version>
+    <version>0.1 alpha</version>
 	<extraSourceFiles>
 		<sourceFile filename="scripts/MPEvent.lua" />
 		<sourceFile filename="scripts/SetAttachEvent.lua" />
@@ -64,17 +64,14 @@
 		 <fr>
                 <name>PistenBully 600 Polar W</name>
                 <description>
-				<![CDATA[Ce PistenBully est moddé d'après l'original de Giants.
-				Moddé par ChewbeeDoo]]>
+				<![CDATA[Ce PistenBully est moddé d'après l'original de Giants.]]>
                 </description>
 				<specs>Maintenance: %s / jour</specs>
             </fr>
             <en>
                 <name>PistenBully 600 Polar W</name>
                 <description>
-<![CDATA[This PistenBully is a PistenBully 600 Standard. The Original PB600 by GIANTS Software is a PistenBully 600 W. The price is real. (V1a)
-edit by Fendtfan1 & MaxT35 @ AMT
-www.austrian-modding-team.tk]]>
+<![CDATA[This PistenBully is a PistenBully 600 Standard. The Original PB600 by GIANTS Software is a PistenBully 600 W.]]>
                 </description>
 				<specs>Maintenance: %s / day</specs>
             </en>
