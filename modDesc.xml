@@ -18,6 +18,53 @@
 			<en>Release cable</en>
             <de>Lösen Sie das Kabel</de>
         </text>
+		
+		 <text name="Winch_Proactive">
+            <fr>Mode pro actif de treuil</fr>
+			<en>Mode pro actif de treuil</en>
+            <de>Mode pro actif de treuil</de>
+        </text>
+		 <text name="Winch_Winding">
+            <fr>Enrouler/derouler le cable</fr>
+			<en>Enrouler/derouler le cable</en>
+            <de>Enrouler/derouler le cable</de>
+        </text>
+		 <text name="Winch_Torque">
+            <fr>Augmenter/reduire le freinage du treuil</fr>
+			<en>Augmenter/reduire le freinage du treuil</en>
+            <de>Augmenter/reduire le freinage du treuil</de>
+        </text>
+		
+		<text name="Winch_Proactive_On">
+            <fr>activer le mode proactif du treuil</fr>
+			<en>activer le mode proactif du treuil</en>
+            <de>activer le mode proactif du treuil</de>
+        </text>
+		<text name="Winch_Proactive_Off">
+            <fr>Desactiver le mode proactif du treuil</fr>
+			<en>Desactiver le mode proactif du treuil</en>
+            <de>Desactiver le mode proactif du treuil</de>
+        </text>
+		<text name="Winch_Wind">
+            <fr>Enrouler le cable du treuil</fr>
+			<en>Enrouler le cable du treuil</en>
+            <de>Enrouler le cable du treuil</de>
+        </text>
+		<text name="Winch_Unwind">
+            <fr>Derouler le cable du treuil</fr>
+			<en>Derouler le cable du treuil</en>
+            <de>Derouler le cable du treuil</de>
+        </text>
+		<text name="Winch_Increase">
+            <fr>Augmenter  le freinage du treuil</fr>
+			<en>Augmenter  le freinage du treuil</en>
+            <de>Augmenter  le freinage du treuil</de>
+        </text>
+		<text name="Winch_Decrease">
+            <fr>Reduire le freinage du treuil</fr>
+			<en>Reduire le freinage du treuil</en>
+            <de>Reduire le freinage du treuil</de>
+        </text>
     </l10n>
     <description>
         <en>PistenBully 600 Polar Winch</en>
@@ -86,11 +133,11 @@
         <!--input name="ABSCHLEPPSTANGE_ATTACH"	key1="KEY_KP_2" button="" /-->
 		<input name="TOWING_AttachObject"	key1="KEY_KP_2" button="" /> 
 		<input name="TOWING_DetachObject" 	key1="KEY_KP_2" button="" />
-		<input name="Chewbee_AUTOORIENT_ON" 	category="VEHICLE" key1="KEY_KP_7" key2="" button="" device="0" mouse="" />
-		<input name="Chewbee_AUTOORIENT_OFF" 	category="VEHICLE" key1="KEY_KP_4" key2="" button="" device="0" mouse="" />
-		<input name="Chewbee_WIND" 				category="VEHICLE" key1="KEY_KP_8" key2="" button="" device="0" mouse="" />
-		<input name="Chewbee_UNWIND" 			category="VEHICLE" key1="KEY_KP_5" key2="" button="" device="0" mouse="" />	
-		<input name="Chewbee_INCREASE" 			category="VEHICLE" key1="KEY_KP_6" key2="" button="" device="0" mouse="" />
-		<input name="Chewbee_DECREASE" 			category="VEHICLE" key1="KEY_KP_9" key2="" button="" device="0" mouse="" />	
+		<input name="Winch_Proactive_On" 	category="VEHICLE" key1="KEY_b" key2="" button="" device="0" mouse="" />
+		<input name="Winch_Proactive_Off" 	category="VEHICLE" key1="KEY_h" key2="" button="" device="0" mouse="" />
+		<input name="Winch_Wind" 			category="VEHICLE" key1="KEY_n" key2="" button="" device="0" mouse="" />
+		<input name="Winch_Unwind" 			category="VEHICLE" key1="KEY_j" key2="" button="" device="0" mouse="" />	
+		<input name="Winch_Increase" 		category="VEHICLE" key1="KEY_l" key2="" button="" device="0" mouse="" />
+		<input name="Winch_Decrease" 		category="VEHICLE" key1="KEY_k" key2="" button="" device="0" mouse="" />	
    </inputBindings>	
 </modDesc>
