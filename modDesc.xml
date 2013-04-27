@@ -50,6 +50,7 @@
 			<specialization name="animatedVehicle" />
 
 			<specialization name="towing"  />
+			<specialization name="Winch"  />
         </type>
     </vehicleTypes>
     <storeItems>
@@ -82,12 +83,14 @@
     </storeItems>
 	
 	<inputBindings>
-        <input name="ABSCHLEPPSTANGE_ATTACH" key1="KEY_KP_2" button="" />
-		<input name="Chewbee_DEICHSELDOWN" 	category="VEHICLE" key1="KEY_KP_7" key2="" button="" device="0" mouse="" />
-		<input name="Chewbee_DEICHSELUP" 	category="VEHICLE" key1="KEY_KP_4" key2="" button="" device="0" mouse="" />
-		<input name="Chewbee_KLAPPEUP" 		category="VEHICLE" key1="KEY_KP_8" key2="" button="" device="0" mouse="" />
-		<input name="Chewbee_KLAPPEDOWN" 	category="VEHICLE" key1="KEY_KP_5" key2="" button="" device="0" mouse="" />	
-		<input name="Chewbee_UP" 			category="VEHICLE" key1="KEY_KP_6" key2="" button="" device="0" mouse="" />
-		<input name="Chewbee_DOWN" 			category="VEHICLE" key1="KEY_KP_9" key2="" button="" device="0" mouse="" />	
+        <!--input name="ABSCHLEPPSTANGE_ATTACH"	key1="KEY_KP_2" button="" /-->
+		<input name="TOWING_AttachObject"	key1="KEY_KP_2" button="" /> 
+		<input name="TOWING_DetachObject" 	key1="KEY_KP_2" button="" />
+		<input name="Chewbee_AUTOORIENT_ON" 	category="VEHICLE" key1="KEY_KP_7" key2="" button="" device="0" mouse="" />
+		<input name="Chewbee_AUTOORIENT_OFF" 	category="VEHICLE" key1="KEY_KP_4" key2="" button="" device="0" mouse="" />
+		<input name="Chewbee_WIND" 				category="VEHICLE" key1="KEY_KP_8" key2="" button="" device="0" mouse="" />
+		<input name="Chewbee_UNWIND" 			category="VEHICLE" key1="KEY_KP_5" key2="" button="" device="0" mouse="" />	
+		<input name="Chewbee_INCREASE" 			category="VEHICLE" key1="KEY_KP_6" key2="" button="" device="0" mouse="" />
+		<input name="Chewbee_DECREASE" 			category="VEHICLE" key1="KEY_KP_9" key2="" button="" device="0" mouse="" />	
    </inputBindings>	
 </modDesc>
