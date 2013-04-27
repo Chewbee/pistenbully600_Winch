@@ -41,10 +41,10 @@ function Winch:updateTick(dt)
 end;
 
 function Winch:draw()
-	if self.isUsed then
-		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Proactive_On).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Proactive_Off)..g_i18n:getText("Winch_Proactive"));
-		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Wind).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Unwind)..g_i18n:getText("Winch_Winding"));
-		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Increase).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Decrease)..g_i18n:getText("Winch_Torque"));
+	if self:getIsActiveForInput() then
+		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Proactive_On).."/"..InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Proactive_Off)..":"..g_i18n:getText("Winch_Proactive"));
+		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Wind).."/"..InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Unwind)..":"..g_i18n:getText("Winch_Winding"));
+		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Increase).."/"..InputBinding.getKeyNamesOfDigitalAction(InputBinding.Winch_Decrease)..":"..g_i18n:getText("Winch_Torque"));
 	end;
 end;
 
