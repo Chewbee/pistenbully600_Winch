@@ -8,14 +8,14 @@
 	</title>
 	<multiplayer supported="true" />
 	 <l10n>
-        <text name="ABSCHLEPPSTANGE_AttachObject">
+        <text name="TOWING_AttachObject">
 			<fr>Fixer le cable</fr>
             <en>Attach cable</en>
             <de>Kabel befestigen</de>
         </text>
-        <text name="ABSCHLEPPSTANGE_DetachObject">
+        <text name="TOWING_DetachObject">
             <fr>Detacher le cable</fr>
-			<en>RElease cable</en>
+			<en>Release cable</en>
             <de>Lösen Sie das Kabel</de>
         </text>
         <text name="ABSCHLEPPSTANGE_ATTACH">
@@ -52,10 +52,9 @@
 			<specialization name="hirable" />
 			<specialization name="cylindered" />
 			<specialization name="attachable" />
-			<specialization name="hilkenHI34000MK" /> 
 			<specialization name="animatedVehicle" />
-			<!--specialization name="towing"  /-->
-			<specialization name="Function" />
+
+			<specialization name="towing"  />
         </type>
     </vehicleTypes>
     <storeItems>
