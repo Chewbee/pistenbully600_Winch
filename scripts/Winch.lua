@@ -19,10 +19,9 @@ function Winch.prerequisitesPresent(specializations)
 end;
 
 function Winch:load(xmlFile)
-	
+	self.WinchProactiveOn = Winch.WinchProactiveOn  ;
 end;	
 	
-
 function Winch:delete()
 end;
 
@@ -33,6 +32,11 @@ function Winch:keyEvent(unicode, sym, modifier, isDown)
 end;
 
 function Winch:update(dt)
+	if self:getIsActiveForInput() then
+		if InputBinding.hasEvent(InputBinding.Winch_Proactive_On) then					
+			self.WinchProactiveOn();
+		end;
+	end;
 end;
 
 function Winch:updateTick(dt)
@@ -54,6 +58,10 @@ end;
 
 function Winch:onDetach()
 	self.vehicleJoint = nil;
+end;
+
+function Winch:WinchProactiveOn()
+	Print("WinchProactiveOn") ; 
 end;
 
 function Winch:onLeave()
