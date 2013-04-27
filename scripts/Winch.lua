@@ -61,7 +61,7 @@ function Winch:onDetach()
 end;
 
 function Winch:WinchProactiveOn()
-	Print("WinchProactiveOn") ; 
+	print("WinchProactiveOn") ; 
 end;
 
 function Winch:onLeave()

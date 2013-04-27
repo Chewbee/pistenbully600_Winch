@@ -82,6 +82,7 @@
     <specializations>
 		<specialization name="towing" className="towing" filename="scripts/towing.lua"/>
  		<specialization name="Winch" className="Winch" filename="scripts/Winch.lua"/>
+		<specialization name="ressort" className="Ressort" filename="scripts/Ressort.lua" />
 	</specializations>	
     <vehicleTypes>
         <type name="snowcat_winch" className="Vehicle" filename="$dataS/scripts/vehicles/Vehicle.lua">
@@ -98,6 +99,7 @@
 
 			<specialization name="towing"  />
 			<specialization name="Winch"  />
+			<specialization name="ressort" />
         </type>
     </vehicleTypes>
     <storeItems>

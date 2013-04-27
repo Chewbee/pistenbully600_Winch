@@ -144,6 +144,13 @@
 		axis="AXIS_WHINCH_ROT_LEFTRIGHT" invertAxis="true" mouseAxis="AXIS_WHINCH_ROT_LEFTRIGHT" invertMouseAxis="true" speedFactor="0.3">
         </movingTool>
 	</movingTools>
+	
+	 <movingParts>	
+		<movingPart index="1>0" referencePoint="3>0" referenceFrame="0>" scaleY="true" />       		
+    </movingParts>
+
+    <springs movingPart1="1>0"  />
+	
     <components count="4">
         <component1 centerOfMass="0 0 0" solverIterationCount="10" />
 		<component2 centerOfMass="0 0 0" solverIterationCount="10" />
