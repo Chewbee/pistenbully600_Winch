@@ -2,7 +2,7 @@
 -- towing
 -- Specialization for towing mod
 --
--- @author  Stefan Geiger
+-- @author  Stefan Geiger  / Chew bee just translated that in English 
 -- @date  10/01/09
 --
 -- Copyright (C) GIANTS Software GmbH, Confidential, All Rights Reserved.
@@ -149,8 +149,8 @@ function towing:detachObject(noEventSend)
 end;
 function towing:draw()
 	if self.lastVehicle ~= nil then
-		g_currentMission:addHelpButtonText(g_i18n:getText("ABSCHLEPPSTANGE_AttachObject"), InputBinding.ABSCHLEPPSTANGE_ATTACH);
+		g_currentMission:addHelpButtonText(g_i18n:getText("TOWING_AttachObject"), InputBinding.TOWING_ATTACH);
 	elseif self.lastVehicle == nil and self.isUsed then
-		g_currentMission:addHelpButtonText(g_i18n:getText("ABSCHLEPPSTANGE_DetachObject"), InputBinding.ABSCHLEPPSTANGE_ATTACH);
+		g_currentMission:addHelpButtonText(g_i18n:getText("TOWING_DetachObject"), InputBinding.TOWING_ATTACH);
 	end;
 end;
