@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<vehicle type="snowcat_winch">
+	<annotation>Original from GIANTS Software, modified by Austrian Modding Team and ChewbeeDoo</annotation>
+    <name>
+        <en>PistenBully 600 Polar with Winch</en>
+        <de>PistenBully 600 Polar Winde</de>
+		<fr>PistenBully 600 Polar avec Treuil</fr>
+    </name>
+    <description></description>
+    <filename>pistenbully600.i3d</filename>
+    <wheels autoRotateBackSpeed="2.5">
+        <wheel rotSpeed="-70" rotMax="32" rotMin="-32" driveMode="1" repr="0" radius="0.45" deltaY="0.01" suspTravel="0.03" spring="30" damper="30" mass="0.2" lateralStiffness="2" isSynchronized="false"/>
+        <wheel rotSpeed="-70" rotMax="32" rotMin="-32" driveMode="1" repr="1" radius="0.45" deltaY="0.01" suspTravel="0.03" spring="30" damper="30" mass="0.2" lateralStiffness="2" isSynchronized="false"/>
+        <wheel rotSpeed="70" rotMax="32" rotMin="-32" driveMode="1" repr="2" radius="0.45" deltaY="0.01" suspTravel="0.03" spring="30" damper="30" mass="0.2" lateralStiffness="2" isSynchronized="false"/>
+        <wheel rotSpeed="70" rotMax="32" rotMin="-32" driveMode="1" repr="3" radius="0.45" deltaY="0.01" suspTravel="0.03" spring="30" damper="30" mass="0.2" lateralStiffness="2" isSynchronized="false"/>
+
+        <wheel rotSpeed="0" driveMode="1" repr="4" radius="0.43" deltaY="0.01" suspTravel="0.03" spring="15" damper="30" mass="0.2" lateralStiffness="2" isSynchronized="false"/>
+        <wheel rotSpeed="0" driveMode="1" repr="5" radius="0.43" deltaY="0.01" suspTravel="0.03" spring="15" damper="30" mass="0.2" lateralStiffness="2" isSynchronized="false"/>
+    </wheels>
+
+    <dynamicWheelFriction minAngle="50" maxAngle="60" />
+
+    <crawlers>
+        <crawler index="0>21" scrollSpeed="1" length="11.75415" speedRefNode="0>21|0">
+            <rotatingPart index="0>17|6" radius="0.385" />
+            <rotatingPart index="0>17|7" radius="0.385" />
+            <rotatingPart index="0>17|8" radius="0.385" />
+            <rotatingPart index="0>17|9" radius="0.385" />
+            <rotatingPart index="0>17|10" radius="0.385" />
+            <rotatingPart index="0>17|11" radius="0.385" />
+        </crawler>
+        <crawler index="0>22" scrollSpeed="1" length="11.75415" speedRefNode="0>22|0">
+            <rotatingPart index="0>17|0" radius="0.385" />
+            <rotatingPart index="0>17|1" radius="0.385" />
+            <rotatingPart index="0>17|2" radius="0.385" />
+            <rotatingPart index="0>17|3" radius="0.385" />
+            <rotatingPart index="0>17|4" radius="0.385" />
+            <rotatingPart index="0>17|5" radius="0.385" />
+        </crawler>
+    </crawlers>
+
+    <motor compensateWheelRadius="true" minRpm="40" maxRpm="430 600 697" maxTorques="-1 -1 -1" brakeForce="18" lowBrakeForceScale="0.5" lowBrakeForceSpeedLimit="1" accelerations="1 1 1" forwardGearRatio="9" backwardGearRatio="9" differentialRatio="1" rpmFadeOutRange="20">
+		<torque rpm="40" torque="35.0"/>
+		<torque rpm="697" torque="20.0"/>
+		<torque rpm="832" torque="0.0"/>
+
+		<backwardTorque rpm="40" torque="35"/>
+		<backwardTorque rpm="405" torque="6"/>
+		<backwardTorque rpm="450" torque="0.0"/>
+    </motor>
+
+    <snowcat size="3" limitedRpm="600" limitedRpmSlow="430" />
+
+    <accelerationSpeed maxAcceleration="0.17" deceleration="0.25" backwardDeceleration="0.7" />
+    <fuelCapacity>220</fuelCapacity>
+    <fuelUsage>0.0035</fuelUsage>
+    <downForce>7</downForce>
+
+    <cameras count="2">
+        <camera1 index="6|0|0" rotatable="true" rotateNode="6|0" limit="true" rotMinX="-1.4" rotMaxX="1" rotMinY="0" rotMaxY="0"  transMin="6" transMax="30" useWorldXZRotation="true" >
+			<raycastNode index="0>7|0"/>
+			<raycastNode index="0>7|1"/>
+		</camera1>
+        <camera2 index="6|1" rotatable="true" limit="true" rotMinX="-1.1" rotMaxX="0.4" transMin="0" transMax="0" />
+    </cameras>
+
+	<attachSound file="$data/sounds/attach.wav" pitchOffset="1" />
+    <motorStartSound file="pistenbully_600_start.wav" pitchOffset="0.85" volume="1" />
+    <motorSound file="pistenbully_600_idle.wav" pitchOffset="0.85" pitchScale="0.009" pitchMax="1.25" volume="1" />
+	<motorSoundRun file="PB400_onfull.wav" pitchOffset="0.85" pitchScale="0.009" pitchMax="1" volume="1" />
+    <motorStopSound file="pistenbully_600_stop.wav" pitchOffset="0.85" />
+	<reverseDriveSound file="$data/sounds/reverseDrivingBeep.wav" volume="0.5" />
+    <honkSound file="$data/sounds/horn.wav" client="$data/sounds/horn3D.wav" volume="1" radius="80" innerRadius="35" />
+	<cylinderedHydraulicSound file="$data/sounds/hydraulics.wav" pitchOffset="0.8" volume="0.4" />
+	
+
+	<deichsel name="deichsel" upSpeedScale="1" downSpeedScale="-1" />
+    <klappe name="klappe" upSpeedScale="1" downSpeedScale="-1" />
+    <stuetze name="stuetze" upSpeedScale="1" downSpeedScale="-1" />	
+
+	
+    <schemaOverlay 
+		file="$data/vehicles/steerable/pistenbully/pistenbullySchema.png" 
+		fileSelected="$data/vehicles/steerable/pistenbully/pistenbullySchemaSelected.png" 
+		width="1" height="0.5" attacherJointPosition="0.5 0">
+        <attacherJoint position="0.7 0.35" rotation="10" invertX="false" />
+        <attacherJoint position="0.2 0.28" rotation="0" invertX="true" />
+    </schemaOverlay>
+
+    <lights count="1">
+        <light1 index="8" />
+    </lights>
+
+	<lightCones>
+		<lightCone index="11" />
+	</lightCones>
+
+	<lightCoronas>
+		<lightCorona index="12" />
+	</lightCoronas>
+
+	<beaconLights>
+		<beaconLight index="13|0" speed="0.016" />
+		<beaconLight index="13|1" speed="0.016" />
+	</beaconLights>
+
+    <exhaustParticleSystems count="1">
+        <exhaustParticleSystem1 node="10" file="$data/vehicles/particleSystems/exhaustParticleSystem.i3d" />
+    </exhaustParticleSystems>
+
+    <driveGroundParticleSystems>
+        <driveGroundParticleSystem minScale="0.5" maxScale="1.0" minSpeed="4" maxSpeed="25" position="1.65 0 -2.85" rotation="0 0 0" file="$data/vehicles/particleSystems/snowDustParticleSystemBig.i3d" />
+        <driveGroundParticleSystem minScale="0.5" maxScale="1.0" minSpeed="4" maxSpeed="25" position="1.65 0.3 -3.35" rotation="0 0 0" file="$data/vehicles/particleSystems/snowChunksParticleSystemBig.i3d" />
+        <driveGroundParticleSystem minScale="0.5" maxScale="1.0" minSpeed="4" maxSpeed="25" position="-1.65 0 -2.85" rotation="0 0 0" file="$data/vehicles/particleSystems/snowDustParticleSystemBig.i3d" />
+        <driveGroundParticleSystem minScale="0.5" maxScale="1.0" minSpeed="4" maxSpeed="25" position="-1.65 0.3 -3.35" rotation="0 0 0" file="$data/vehicles/particleSystems/snowChunksParticleSystemBig.i3d" />
+        <driveGroundParticleSystem direction="-1" minScale="0.2" maxScale="1.0" minSpeed="4" maxSpeed="25" position="-1.65 0 2.75" rotation="0 180 0" file="$data/vehicles/particleSystems/snowChunksParticleSystemBig.i3d" />
+        <driveGroundParticleSystem direction="-1" minScale="0.2" maxScale="1.0" minSpeed="4" maxSpeed="25" position="-1.65 0 2.1" rotation="0 180 0" file="$data/vehicles/particleSystems/snowDustParticleSystemBig.i3d" />
+        <driveGroundParticleSystem direction="-1" minScale="0.2" maxScale="1.0" minSpeed="4" maxSpeed="25" position="1.65 0 2.75" rotation="0 180 0" file="$data/vehicles/particleSystems/snowChunksParticleSystemBig.i3d" />
+        <driveGroundParticleSystem direction="-1" minScale="0.2" maxScale="1.0" minSpeed="4" maxSpeed="25" position="1.65 0 2.1" rotation="0 180 0" file="$data/vehicles/particleSystems/snowDustParticleSystemBig.i3d" />
+	</driveGroundParticleSystems>
+    <attacherJoints>
+        <attacherJoint jointType="groomer" index="15|0|0" rotationNode="15" maxRot="0 0 0" rotationNode2="15|0" maxRot2="35 0 0" maxTransLimit="0 0 0" maxRotLimit="0 0 32" moveTime="1.5">
+        </attacherJoint>
+        <attacherJoint jointType="fixedImplement" index="0>23" maxTransLimit="0 0 0" maxRotLimit="0 0 0" moveTime="1.5" allowsJointLimitMovement="false" allowsLowering="false">
+        </attacherJoint>
+    </attacherJoints>
+	
+	<attacherPoint index="3>0" rootNode="3>"/>
+	
+	<trailerAttacherJoints>
+        <trailerAttacherJoint index="16" />
+    </trailerAttacherJoints>
+
+    <enterReferenceNode index="0>" />
+    <exitPoint index="0>9" />
+    <steering index="14|0" rotationSpeed="6"/>
+    <size width="6" length="8" lengthOffset="0.5" widthOffset="0" />
+	<characterNode index="25" cameraMinDistance="0.5" />
+	<mouseControls>
+        <mouseControl iconFilename="$dataS2/menu/mouseControlsHelp/tool_sc_horizontal.png" mouseButton="RIGHT" mouseAxis="X" axis="AXIS_WHINCH_ROT_LEFTRIGHT" />
+    </mouseControls>
+    <movingTools>
+        <movingTool index="1>" anchorActor="0" rotationAxis="2" rotSpeed="40" rotAcceleration="250" rotMax="720" rotMin="-720" 
+		axis="AXIS_WHINCH_ROT_LEFTRIGHT" invertAxis="true" mouseAxis="AXIS_WHINCH_ROT_LEFTRIGHT" invertMouseAxis="true" speedFactor="0.3">
+        </movingTool>
+	</movingTools>
+    <components count="4">
+        <component1 centerOfMass="0 0 0" solverIterationCount="10" />
+		<component2 centerOfMass="0 0 0" solverIterationCount="10" />
+		<component3 centerOfMass="0 -0.06584 0" solverIterationCount="90" />
+		<component4 centerOfMass="0 -0.36 -0.031" solverIterationCount="90" />
+		<joint component1="1" component2="0" index="1>" rotLimit="0 180 0" transLimit="0 0 0" />
+		<joint component1="2" component2="1" index="2>" rotLimit="20 0 0" transLimit="0 0 0" />
+		<joint component1="3" component2="2" index="3>" rotLimit="60 0 60" transLimit="0 0 0" />
+    </components>
+</vehicle>

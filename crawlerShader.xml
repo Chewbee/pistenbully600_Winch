@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<CustomShader version="1.0" classRequirement="">
+    <LodLevel startDistance="0">
+        <Parameters>
+            <Parameter name="scrollPosition" target="In.mat.scrollPosition" type="float4" defaultValue="0 0 0 0"/>
+            <Parameter name="lengthAndRadius" target="In.mat.lengthAndRadius" type="float4" defaultValue="3.634 0.349 0 0"/>
+        </Parameters>
+        <CodeInjections>
+          <CodeInjection position="MATERIALINFO">
+            <![CDATA[
+            uniform float4 scrollPosition;
+            uniform float4 lengthAndRadius;
+            ]]>
+          </CodeInjection>
+			<CodeInjection position="START_POS_VS">
+				<![CDATA[
+
+                #ifdef NORMAL_MAP
+                #error "Normal map not supported"
+                #endif
+
+                float crawlerRadius = In.mat.lengthAndRadius.y; //0.349;
+                float crawlerRadiusPi = 3.1415926*crawlerRadius;
+                float crawlerLength = In.mat.lengthAndRadius.x; //3.634;
+
+                float posFirstRot = crawlerLength;
+                float posAfterRot = posFirstRot + crawlerRadiusPi;
+                float posAfterBottom = posAfterRot + crawlerLength;
+                float posAfterLastRot = posAfterBottom + crawlerRadiusPi;
+
+                float offsetZRaw = In.mat.scrollPosition.x;
+                position.z = fmod(position.z+offsetZRaw,posAfterLastRot);
+
+                //if (position.z > posAfterLastRot) {
+                //    position.z -= posAfterLastRot;
+                if (position.z > posAfterBottom) {
+                    // z=0 -> 0
+                    // z=pi*r -> pi
+                    float angle = (position.z - posAfterBottom) / crawlerRadius;
+
+                    position.z = - sin(angle)*position.y;
+                    position.y = -cos(angle)*position.y;
+                } else if (position.z > posAfterRot) {
+                    position.z = posFirstRot - (position.z - posAfterRot);
+                    position.y = -position.y;
+                } else if (position.z > posFirstRot) {
+                    // z=0 -> 0
+                    // z=pi*r -> pi
+                    float angle = (position.z - posFirstRot) / crawlerRadius;
+
+                    position.z = posFirstRot + sin(angle)*position.y;
+                    position.y = cos(angle)*position.y;
+                }
+                //
+
+                //
+
+				]]>
+        	</CodeInjection>
+			<CodeInjection position="GET_NORMAL_VS">
+				<![CDATA[
+                    /*float3 normal = In.normal.xyz;
+
+                    float crawlerRadius = 0.349;
+                    float crawlerLength = 3.634;
+
+                    float posFirstRot = crawlerLength;
+                    float posAfterRot = posFirstRot + 3.1415926*crawlerRadius;
+                    float posAfterBottom = posAfterRot + crawlerLength;
+                    float posAfterLastRot = posAfterBottom + 3.1415926*crawlerRadius;
+
+                    float offsetZRaw = In.mat.scrollPosition.x;
+                    float posZ = fmod(getPosition(In).z+offsetZRaw,posAfterLastRot);
+
+                    if (posZ > posAfterBottom) {
+                        // z=0 -> 0
+                        // z=pi*r -> pi
+                        float angle = (posZ - posAfterBottom) / crawlerRadius;
+
+                        float cosAngle = cos(angle);
+                        float sinAngle = sin(angle);
+
+                        normal.y = -cosAngle*normal.y + sinAngle*normal.z;
+                        normal.z = -sinAngle*normal.y - cosAngle*normal.z;
+                    } else if (posZ > posAfterRot) {
+                        normal.yz = -normal.yz;
+                    } else if (posZ > posFirstRot) {
+                        // z=0 -> 0
+                        // z=pi*r -> pi
+                        float angle = (posZ - posFirstRot) / crawlerRadius;
+
+                        float cosAngle = cos(angle);
+                        float sinAngle = sin(angle);
+
+                        normal.y = cosAngle*normal.y - sinAngle*normal.z;
+                        normal.z = sinAngle*normal.y + cosAngle*normal.z;
+                    }
+
+                    return normal;*/
+				]]>
+        	</CodeInjection>
+     	  </CodeInjections>
+    </LodLevel>
+</CustomShader>
