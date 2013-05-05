@@ -50,13 +50,13 @@ function towing:update(dt)
 	if self:getIsActiveForInput() then
 		if self.lastVehicle ~= nil then 
 			if not self.isUsed then
-				if InputBinding.hasEvent(InputBinding.TOWING_ATTACH) then					
+				if InputBinding.hasEvent(InputBinding.TOWING_AttachObject) then					
 					self:attachObject(self.lastVehicle[1],self.lastVehicle[2],nil);
 				end;
 			end;
 		else
 			if self.isUsed then
-				if InputBinding.hasEvent(InputBinding.TOWING_ATTACH) then	
+				if InputBinding.hasEvent(InputBinding.TOWING_AttachObject) then	
 					self:detachObject();
 				end;
 			end;
@@ -149,8 +149,8 @@ function towing:detachObject(noEventSend)
 end;
 function towing:draw()
 	if self.lastVehicle ~= nil then
-		g_currentMission:addHelpButtonText(g_i18n:getText("TOWING_AttachObject"), InputBinding.TOWING_ATTACH);
+		g_currentMission:addHelpButtonText(g_i18n:getText("TOWING_AttachObject"), InputBinding.TOWING_AttachObject);
 	elseif self.lastVehicle == nil and self.isUsed then
-		g_currentMission:addHelpButtonText(g_i18n:getText("TOWING_DetachObject"), InputBinding.TOWING_ATTACH);
+		g_currentMission:addHelpButtonText(g_i18n:getText("TOWING_DetachObject"), InputBinding.TOWING_AttachObject);
 	end;
 end;
