@@ -73,12 +73,6 @@
     <honkSound file="$data/sounds/horn.wav" client="$data/sounds/horn3D.wav" volume="1" radius="80" innerRadius="35" />
 	<cylinderedHydraulicSound file="$data/sounds/hydraulics.wav" pitchOffset="0.8" volume="0.4" />
 	
-
-	<deichsel name="deichsel" upSpeedScale="1" downSpeedScale="-1" />
-    <klappe name="klappe" upSpeedScale="1" downSpeedScale="-1" />
-    <stuetze name="stuetze" upSpeedScale="1" downSpeedScale="-1" />	
-
-	
     <schemaOverlay 
 		file="$data/vehicles/steerable/pistenbully/pistenbullySchema.png" 
 		fileSelected="$data/vehicles/steerable/pistenbully/pistenbullySchemaSelected.png" 

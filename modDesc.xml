@@ -139,7 +139,7 @@
 		<input name="Winch_Proactive_Off" 	category="VEHICLE" key1="KEY_h" key2="" button="" device="0" mouse="" />
 		<input name="Winch_Wind" 			category="VEHICLE" key1="KEY_n" key2="" button="" device="0" mouse="" />
 		<input name="Winch_Unwind" 			category="VEHICLE" key1="KEY_j" key2="" button="" device="0" mouse="" />	
-		<input name="Winch_Increase" 		category="VEHICLE" key1="KEY_l" key2="" button="" device="0" mouse="" />
+		<input name="Winch_Increase" 		category="VEHICLE" key1="KEY_m" key2="" button="" device="0" mouse="" />
 		<input name="Winch_Decrease" 		category="VEHICLE" key1="KEY_k" key2="" button="" device="0" mouse="" />	
    </inputBindings>	
 </modDesc>
