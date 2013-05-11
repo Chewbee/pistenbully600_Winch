@@ -68,6 +68,7 @@ function towing:updateTick(dt)
 		if not self.isUsed then
 			self.lastVehicle = nil;
 			local x,y,z = getWorldTranslation(self.attachPoint);
+			-- boucle sur les vehicules à etendre afin de pouvoir detecter autre chose
 			for k,v in pairs(g_currentMission.vehicles) do
 				for index,joint in pairs(v.attacherJoints) do
 					local x1,y1,z1 = getWorldTranslation(joint.jointTransform);
