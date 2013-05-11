@@ -40,27 +40,27 @@ function winch:update(dt)
 	if self:getIsActiveForInput() then
 		-- winch_Proactive_On
 		if InputBinding.hasEvent(InputBinding.winch_Proactive_On) then					
-			self.winchProactiveOn();
+			self:winchProactiveOn();
 		end;
 		-- winch_Proactive_Off
 		if InputBinding.hasEvent(InputBinding.winch_Proactive_Off) then					
-			self.winchProactiveOff();
+			self:winchProactiveOff();
 		end;
 		-- winch_Wind
 		if InputBinding.hasEvent(InputBinding.winch_Wind) then					
-			self.winch_Wind();
+			self:winch_Wind();
 		end;
 		-- winch_Unwind
 		if InputBinding.hasEvent(InputBinding.winch_Unwind) then					
-			self.winch_Unwind();
+			self:winch_Unwind();
 		end;
 		-- winch_Increase
 		if InputBinding.hasEvent(InputBinding.winch_Increase) then					
-			self.winch_Increase();
+			self:winch_Increase();
 		end;
 		-- winch_Decrease
 		if InputBinding.hasEvent(InputBinding.winch_Decrease) then					
-			self.winch_Decrease();
+			self:winch_Decrease();
 		end;
 		
 	end;
@@ -95,6 +95,8 @@ function winch:winchProactiveOff()
 	print("winchProactiveOff") ; 
 	if self.vehicle ~= nil then
 		self.vehicle:setBeaconLightsVisibility(not self.vehicle.beaconLightsActive);
+	else
+		print("self.vehicle is NIL");
 	end;
 end;
 
@@ -108,11 +110,13 @@ end;
 
 function winch:winch_Increase()
 	print("winch_Increase") ; 
-	--if self.vehicle ~= nil then
-	--local Joints = self.vehicle.joints ;
-	--for i,v in ipairs(Joints) do 
-	--	print(i,v) 
-	--end
+	if self.vehicle ~= nil then
+		for i,v in ipairs(self.vehicle.joints) do 
+			print(i,v) 
+		end
+	else
+		print("self.vehicle is NIL");
+	end ;
 end;
 
 function winch:winch_Decrease()
