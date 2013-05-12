@@ -47,53 +47,50 @@ function towing:writeStream(streamId, connection)
 	end;
 end;
 function towing:update(dt)
-	--if self:getIsActiveForInput() then
-		if self.lastVehicle ~= nil then 
-			if not self.isUsed then
-				if InputBinding.hasEvent(InputBinding.TOWING_AttachObject) then					
-					self:attachObject(self.lastVehicle[1],self.lastVehicle[2],nil);
-				end;
-			end;
-		else
-			if self.isUsed then
-				if InputBinding.hasEvent(InputBinding.TOWING_AttachObject) then	
-					self:detachObject();
-				end;
+	if self.lastVehicle ~= nil then 
+		if not self.isUsed then
+			if InputBinding.hasEvent(InputBinding.TOWING_AttachObject) then					
+				self:attachObject(self.lastVehicle[1],self.lastVehicle[2],nil);
 			end;
 		end;
-	--end;
+	else
+		if self.isUsed then
+			if InputBinding.hasEvent(InputBinding.TOWING_AttachObject) then	
+				self:detachObject();
+			end;
+		end;
+	end;
 end;
 function towing:updateTick(dt)
-	--if self:getIsActiveForInput() then
-		if not self.isUsed then
-			self.lastVehicle = nil;
-			local x,y,z = getWorldTranslation(self.attachPoint);
-			-- boucle sur les vehicules à etendre afin de pouvoir detecter autre chose
-			for k,v in pairs(g_currentMission.vehicles) do
-				for index,joint in pairs(v.attacherJoints) do
-					local x1,y1,z1 = getWorldTranslation(joint.jointTransform);
-					local distance = Utils.vector3Length(x-x1,y-y1,z-z1);
-					if distance <= 1.5 then						
-						self.lastVehicle = {};
-						self.lastVehicle[1] = v;
-						self.lastVehicle[2] = index;
-						break;
-					end;
+	if not self.isUsed then
+		self.lastVehicle = nil;
+		local x,y,z = getWorldTranslation(self.attachPoint);
+		-- boucle sur les vehicules à etendre afin de pouvoir detecter autre chose
+		for k,v in pairs(g_currentMission.vehicles) do
+			for index,joint in pairs(v.attacherJoints) do
+				local x1,y1,z1 = getWorldTranslation(joint.jointTransform);
+				local distance = Utils.vector3Length(x-x1,y-y1,z-z1);
+				if distance <= 1.5 then						
+					self.lastVehicle = {};
+					self.lastVehicle[1] = v;
+					self.lastVehicle[2] = index;
+					break;
 				end;
-				if v.attacherJoint ~= nil and self.lastVehicle == nil then
-					local x1,y1,z1 = getWorldTranslation(v.attacherJoint.node);
-					local distance = Utils.vector3Length(x-x1,y-y1,z-z1);
-					if distance <= 1.5 then						
-						self.lastVehicle = {};
-						self.lastVehicle[1] = v;
-						--self.lastVehicle[2] = v.attacherJoint;
-						self.lastVehicle[2] = 0;
-						break;
-					end;
+			end;
+			if v.attacherJoint ~= nil and self.lastVehicle == nil then
+				local x1,y1,z1 = getWorldTranslation(v.attacherJoint.node);
+				local distance = Utils.vector3Length(x-x1,y-y1,z-z1);
+				if distance <= 1.5 then						
+					self.lastVehicle = {};
+					self.lastVehicle[1] = v;
+					-- le commentaire ci dessous vient du fichier original de S Geiger 
+					--self.lastVehicle[2] = v.attacherJoint;
+					self.lastVehicle[2] = 0;
+					break;
 				end;
 			end;
 		end;
-	--end;
+	end;
 end;
 function towing:attachObject(vehicleId,jointId,noEventSend,vehicle)
 	setAttachEvent.sendEvent(self,vehicleId,jointId,noEventSend);
@@ -120,11 +117,13 @@ function towing:attachObject(vehicleId,jointId,noEventSend,vehicle)
 		constr:setJointTransforms(jointTransform2,  jointTransform);
 		for i=1, 3 do
 			constr:setTranslationLimit(i-1, true, 0, 0);
+			-- le commentaire ci dessous vient du fichier original de S Geiger
 			--constr:setRotationLimit(i-1,0,0);
 		end;
 		joint.index = constr:finalize();
 		if not self.Joint.vehicle.isControlled and self.Joint.vehicle.motor ~= nil and self.Joint.vehicle.wheels~= nil then
 			for k,wheel in pairs(vehicleId.wheels) do
+				-- le commentaire ci dessous vient du fichier original de S Geiger
 				--setWheelShapeProps(wheel.node, wheel.wheelShape, 0, vehicleId.motor.brakeForce, 0);
 				setWheelShapeProps(wheel.node, wheel.wheelShape, 0, 0, 0);
 			end;
@@ -140,6 +139,7 @@ function towing:detachObject(noEventSend)
 		if not self.Joint.vehicle.isControlled and self.Joint.vehicle.motor ~= nil and self.Joint.vehicle.wheels~= nil then
 			for k,wheel in pairs(self.Joint.vehicle.wheels) do
 				setWheelShapeProps(wheel.node, wheel.wheelShape, 0, self.Joint.vehicle.motor.brakeForce, 0);
+				-- le commentaire ci dessous vient du fichier original de S Geiger
 				--setWheelShapeProps(wheel.node, wheel.wheelShape, 0, 0, 0);
 			end;
 		end;
