@@ -19,10 +19,10 @@
             <de>Lösen Sie das Kabel</de>
         </text>
 		
-		 <text name="winch_Proactive">
-            <fr>Mode pro actif de treuil</fr>
-			<en>Mode pro actif de treuil</en>
-            <de>Mode pro actif de treuil</de>
+		 <text name="winch_Proactive_Toggle">
+            <fr>Activer/desactiver mode pro actif de treuil</fr>
+			<en>Activer/desactiver mode pro actif de treuil</en>
+            <de>Activer/desactiver mode pro actif de treuil</de>
         </text>
 		 <text name="winch_Winding">
             <fr>Enrouler/derouler le cable</fr>
@@ -30,12 +30,12 @@
             <de>Enrouler/derouler le cable</de>
         </text>
 		 <text name="winch_Torque">
-            <fr>Augmenter/reduire le freinage du treuil</fr>
-			<en>Augmenter/reduire le freinage du treuil</en>
-            <de>Augmenter/reduire le freinage du treuil</de>
+            <fr>+ / - force du treuil</fr>
+			<en>+ / - force du treuil</en>
+            <de>+ / - force du treuil</de>
         </text>
 		
-		<text name="winch_Proactive_On">
+		<!--text name="winch_Proactive_On">
             <fr>activer le mode proactif du treuil</fr>
 			<en>activer le mode proactif du treuil</en>
             <de>activer le mode proactif du treuil</de>
@@ -54,16 +54,16 @@
             <fr>Derouler le cable du treuil</fr>
 			<en>Derouler le cable du treuil</en>
             <de>Derouler le cable du treuil</de>
-        </text>
+        </text-->
 		<text name="winch_Increase">
-            <fr>Augmenter  le freinage du treuil</fr>
-			<en>Augmenter  le freinage du treuil</en>
-            <de>Augmenter  le freinage du treuil</de>
+            <fr>Augmenter la traction du treuil</fr>
+			<en>Augmenter la traction du treuil</en>
+            <de>Augmenter la traction du treuil</de>
         </text>
 		<text name="winch_Decrease">
-            <fr>Reduire le freinage du treuil</fr>
-			<en>Reduire le freinage du treuil</en>
-            <de>Reduire le freinage du treuil</de>
+            <fr>Reduire la traction du treuil</fr>
+			<en>Reduire la traction du treuil</en>
+            <de>Reduire la traction du treuil</de>
         </text>
     </l10n>
     <description>
@@ -82,7 +82,7 @@
     <specializations>
 		<specialization name="towing" className="towing" filename="scripts/towing.lua"/>
  		<specialization name="winch" className="winch" filename="scripts/winch.lua"/>
-		<specialization name="ressort" className="Ressort" filename="scripts/Ressort.lua" />
+		<!--specialization name="ressort" className="Ressort" filename="scripts/Ressort.lua" /-->
 	</specializations>	
     <vehicleTypes>
         <type name="snowcat_winch" className="Vehicle" filename="$dataS/scripts/vehicles/Vehicle.lua">
@@ -96,7 +96,6 @@
 			<specialization name="cylindered" />
 			<specialization name="attachable" />
 			<specialization name="animatedVehicle" />
-
 			<specialization name="towing"  />
 			<specialization name="winch"  />
 			<!--specialization name="ressort" /-->
@@ -127,16 +126,17 @@
             <rotation>0</rotation>
             <image active="textures/store.dds"/>
             <price>300000</price>
-            <xmlFilename>pistenbully600_winch.xml</xmlFilename>
+            <xmlFilename>pistenbully600_Winch.xml</xmlFilename>
         </storeItem>
     </storeItems>
 	
 	<inputBindings>
 		<input name="TOWING_AttachObject"	key1="KEY_KP_2" button="" /> 
-		<input name="winch_Proactive_On" 	category="VEHICLE" key1="KEY_b" key2="" button="" device="0" mouse="" />
-		<input name="winch_Proactive_Off" 	category="VEHICLE" key1="KEY_h" key2="" button="" device="0" mouse="" />
-		<input name="winch_Wind" 			category="VEHICLE" key1="KEY_n" key2="" button="" device="0" mouse="" />
-		<input name="winch_Unwind" 			category="VEHICLE" key1="KEY_j" key2="" button="" device="0" mouse="" />	
+		<input name="winch_Proactive_Toggle" category="VEHICLE" key1="KEY_b" key2="" button="" device="0" mouse="" />
+		<!--input name="winch_Proactive_On" 	category="VEHICLE" key1="KEY_b" key2="" button="" device="0" mouse="" />
+		<input name="winch_Proactive_Off" 	category="VEHICLE" key1="KEY_h" key2="" button="" device="0" mouse="" /-->
+		<!--input name="winch_Wind" 			category="VEHICLE" key1="KEY_n" key2="" button="" device="0" mouse="" />
+		<input name="winch_Unwind" 			category="VEHICLE" key1="KEY_j" key2="" button="" device="0" mouse="" /-->	
 		<input name="winch_Increase" 		category="VEHICLE" key1="KEY_m" key2="" button="" device="0" mouse="" />
 		<input name="winch_Decrease" 		category="VEHICLE" key1="KEY_k" key2="" button="" device="0" mouse="" />	
    </inputBindings>	

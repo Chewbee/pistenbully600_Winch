@@ -19,12 +19,16 @@ function winch.prerequisitesPresent(specializations)
 end;
 
 function winch:load(xmlFile)
-	self.winchProactiveOn	= winch.winchProactiveOn  ;
-	self.winchProactiveOff	= winch.winchProactiveOff  ;
-	self.winch_Wind			= winch.winch_Wind  ;
-	self.winch_Unwind		= winch.winch_Unwind  ;
-	self.winch_Increase		= winch.winch_Increase  ;
-	self.winch_Decrease		= winch.winch_Decrease  ;
+	-- self.winchProactiveOn		= winch.winchProactiveOn  ;
+	-- self.winchProactiveOff		= winch.winchProactiveOff  ;
+	self.winchToggleProactive 	= winch.winchToggleProactive;
+	self.toggleProactive		= winch.toggleProactive;
+	-- self.winch_Wind				= winch.winch_Wind  ;
+	-- self.winch_Unwind			= winch.winch_Unwind  ;
+	self.winch_Increase			= winch.winch_Increase  ;
+	self.winch_Decrease			= winch.winch_Decrease  ;
+	
+	self.proActiveMode = false ; 
 end;	
 	
 function winch:delete()
@@ -38,22 +42,27 @@ end;
 
 function winch:update(dt)
 	if self:getIsActiveForInput() then
-		-- winch_Proactive_On
-		if InputBinding.hasEvent(InputBinding.winch_Proactive_On) then					
-			self:winchProactiveOn();
+		-- winch_Proactive_Toggle
+		if InputBinding.hasEvent(InputBinding.winch_Proactive_Toggle) then					
+			self:toggleProactive(not self.proActiveMode);
 		end;
-		-- winch_Proactive_Off
-		if InputBinding.hasEvent(InputBinding.winch_Proactive_Off) then					
-			self:winchProactiveOff();
-		end;
-		-- winch_Wind
-		if InputBinding.hasEvent(InputBinding.winch_Wind) then					
-			self:winch_Wind();
-		end;
-		-- winch_Unwind
-		if InputBinding.hasEvent(InputBinding.winch_Unwind) then					
-			self:winch_Unwind();
-		end;
+		-- -- winch_Proactive_On
+		-- if InputBinding.hasEvent(InputBinding.winch_Proactive_On) then					
+			-- self:winchProactiveOn();
+		-- end;
+		-- -- winch_Proactive_Off
+		-- if InputBinding.hasEvent(InputBinding.winch_Proactive_Off) then					
+			-- self:winchProactiveOff();
+		-- end;
+		-- -- winch_Wind
+		-- if InputBinding.hasEvent(InputBinding.winch_Wind) then					
+			-- self:winch_Wind();
+		-- end;
+		-- -- winch_Unwind
+		-- if InputBinding.hasEvent(InputBinding.winch_Unwind) then					
+			-- self:winch_Unwind();
+		-- end;
+		
 		-- winch_Increase
 		if InputBinding.hasEvent(InputBinding.winch_Increase) then					
 			self:winch_Increase();
@@ -73,8 +82,8 @@ end;
 
 function winch:draw()
 	if self:getIsActiveForInput() then
-		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Proactive_On).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Proactive_Off)..":"..g_i18n:getText("winch_Proactive"));
-		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Wind).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Unwind)..":"..g_i18n:getText("winch_Winding"));
+		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Proactive_Toggle)..":"..g_i18n:getText("winch_Proactive_Toggle"));
+		--g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Wind).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Unwind)..":"..g_i18n:getText("winch_Winding"));
 		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)..":"..g_i18n:getText("winch_Torque"));
 	end;
 end;
@@ -87,35 +96,36 @@ function winch:onDetach()
 	self.vehicleJoint = nil;
 end;
 
+function toggleProactive(mode)
+	self.proActiveMode = mode ; 
+	print("proActivetoggled");
+end;
+	
 function winch:winchProactiveOn()
 	print("winchProactiveOn") ; 
 end;
 
 function winch:winchProactiveOff()
 	print("winchProactiveOff") ; 
-	if self.vehicle ~= nil then
-		self.vehicle:setBeaconLightsVisibility(not self.vehicle.beaconLightsActive);
-	else
-		print("self.vehicle is NIL");
-	end;
+	self:setBeaconLightsVisibility(not self.beaconLightsActive);
 end;
 
-function winch:winch_Wind()
-	print("winch_Wind") ; 
-end;
+-- function winch:winch_Wind()
+	-- print("winch_Wind") ; 
+-- end;
 
-function winch:winch_Unwind()
-	print("winch_Unwind") ; 
-end;
+-- function winch:winch_Unwind()
+	-- print("winch_Unwind") ; 
+-- end;
 
 function winch:winch_Increase()
 	print("winch_Increase") ; 
-	if self.vehicle ~= nil then
-		for i,v in ipairs(self.vehicle.joints) do 
+	if self.joints ~= nil then
+		for i,v in ipairs(self.joints) do 
 			print(i,v) 
 		end
 	else
-		print("self.vehicle is NIL");
+		print("self.joints is NIL");
 	end ;
 end;
 
