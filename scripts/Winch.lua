@@ -63,8 +63,9 @@ function winch:update(dt)
 end;
 
 function winch:updateTick(dt)
-
-	
+	local x,y,z = getWorldTranslation(self.winchArm); 
+	local dx,dy,dz = getWorldTranslation(self.cable); 
+	drawDebugLine( x,y,z, 1, 0, 0, dx,dy,dz, 0, 1, 0);
 end;
 
 function winch:draw()
@@ -85,14 +86,13 @@ function winch:toggleProactive(mode)
 	print("proActivetoggled : ", tostring(mode));
 	if mode == false then 
 		local gx, gy, gz, px, py, pz, cosPhi = 0,0,0,0,0,0,0 ;
-		-- local groomer	= self.components[1].node; 
-		-- local winchArm	= self.components[2].node;
+		
 		gx, gy, gz = localDirectionToWorld(self.groomer, 0, 0, 1);
 		px, py, pz = localDirectionToWorld(self.winchArm, 0, 0, 1);
 		print(string.format("Groomer   GX %.2f GY %.2f GZ%.2f %s", gx,gy,gz,getRigidBodyType(self.groomer)));
 		print(string.format("Winch Arm PX %.2f PY %.2f PZ%.2f %s",px,py,pz,getRigidBodyType(self.winchArm)));
 		cosPhi = Utils.dotProduct(gx, gy, gz, px, py, pz);
-		
+		print(string.format("Phi %f",math.acos(cosPhi)* 180 / 3.14159265359)) ; 
 		
 		-- to add a force to the wincharm joint BUT at position defined by the last three digits, three first one being force vector
 		-- addForce(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
@@ -102,11 +102,10 @@ function winch:toggleProactive(mode)
 		-- link(211, winchArm);
 		-- print(string.format("Winch Arm %s",getRigidBodyType(winchArm)));
 	else
-		
-		
+		-- setRigidBodyType(self.winchArm,"Static");
+		setJointFrame(self.winchArm,0, 211);
+		-- setRigidBodyType(self.winchArm,"Dynamic");
 		-- unlink(winchArm) ;
-		-- setRigidBodyType(self.components[2].node,"Dynamic");
-		-- print(string.format("Winch Arm %s",getRigidBodyType(winchArm)));
 	end ; 
 end;
 
@@ -136,5 +135,4 @@ end;
 
 function winch:onDeactivateSounds()
 end;
-
 
