@@ -26,6 +26,8 @@ function winch:load(xmlFile)
 	self.proActiveMode = false ; 
 	self.tractionForce = 0 ;
 	self.tractionStep = 1 ;
+	
+	self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
 end;	
 	
 function winch:delete()
@@ -76,6 +78,28 @@ end;
 function winch:toggleProactive(mode)
 	self.proActiveMode = mode ; 
 	print("proActivetoggled : ", tostring(mode));
+	if mode == false then 
+		local gx, gy, gz, px, py, pz = 0,0,0,0,0,0 ;
+		local groomer	= self.components[1].node; 
+		local winchArm	= self.components[2].node;
+		gx, gy, gz = localDirectionToWorld(groomer, 0, 0, 1);
+		px, py, pz = localDirectionToWorld(winchArm, 0, 0, 1);
+		print(string.format("Groomer   GX %.2f GY %.2f GZ%.2f %s", gx,gy,gz,getRigidBodyType(groomer)));
+		print(string.format("Winch Arm PX %.2f PY %.2f PZ%.2f %s",px,py,pz,getRigidBodyType(winchArm)));
+		
+		--addImpulse(winchArm, 10, 0, 0, 0, 0, 0, true);
+		addForce(winchArm, 0, 10, 0, 0, 0, 0, true);
+		
+		-- setRigidBodyType(winchArm,"NoRigidBody");
+		-- link(211, winchArm);
+		-- print(string.format("Winch Arm %s",getRigidBodyType(winchArm)));
+	else
+		
+		
+		-- unlink(winchArm) ;
+		-- setRigidBodyType(self.components[2].node,"Dynamic");
+		-- print(string.format("Winch Arm %s",getRigidBodyType(winchArm)));
+	end ; 
 end;
 
 function winch:winch_Increase()
