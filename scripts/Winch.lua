@@ -24,6 +24,8 @@ function winch:load(xmlFile)
 	self.winch_Decrease			= winch.winch_Decrease  ;
 	
 	self.proActiveMode = false ; 
+	self.tractionForce = 0 ;
+	self.tractionStep = 1 ;
 end;	
 	
 function winch:delete()
@@ -80,14 +82,21 @@ function winch:toggleProactive(mode)
 end;
 
 function winch:winch_Increase()
-	print("winch_Increase") ; 
-	for i,v in ipairs(self.Joints) do 
-		print(i,v) 
-	end
+	if (self.tractionForce + self.tractionStep) < 46 then
+		self.tractionForce = self.tractionForce + self.tractionStep 
+		print("winch traction force Increased : ",tostring(self.tractionForce) ) ; 
+	else 
+		print("Maximum winch traction force reached");
+	end;
 end;
 
 function winch:winch_Decrease()
-	print("winch_Decrease") ; 
+	if self.tractionForce - self.tractionStep >= 0 then
+		self.tractionForce = self.tractionForce - self.tractionStep 
+		print("winch traction force Decreased : ",tostring(self.tractionForce) ) ; 
+	else
+		print("Minimum winch traction force reached");
+	end ;
 end;
 
 function winch:onLeave()
