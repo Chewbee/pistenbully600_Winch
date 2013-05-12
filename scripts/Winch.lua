@@ -19,12 +19,7 @@ function winch.prerequisitesPresent(specializations)
 end;
 
 function winch:load(xmlFile)
-	-- self.winchProactiveOn		= winch.winchProactiveOn  ;
-	-- self.winchProactiveOff		= winch.winchProactiveOff  ;
-	self.winchToggleProactive 	= winch.winchToggleProactive;
 	self.toggleProactive		= winch.toggleProactive;
-	-- self.winch_Wind				= winch.winch_Wind  ;
-	-- self.winch_Unwind			= winch.winch_Unwind  ;
 	self.winch_Increase			= winch.winch_Increase  ;
 	self.winch_Decrease			= winch.winch_Decrease  ;
 	
@@ -46,23 +41,6 @@ function winch:update(dt)
 		if InputBinding.hasEvent(InputBinding.winch_Proactive_Toggle) then					
 			self:toggleProactive(not self.proActiveMode);
 		end;
-		-- -- winch_Proactive_On
-		-- if InputBinding.hasEvent(InputBinding.winch_Proactive_On) then					
-			-- self:winchProactiveOn();
-		-- end;
-		-- -- winch_Proactive_Off
-		-- if InputBinding.hasEvent(InputBinding.winch_Proactive_Off) then					
-			-- self:winchProactiveOff();
-		-- end;
-		-- -- winch_Wind
-		-- if InputBinding.hasEvent(InputBinding.winch_Wind) then					
-			-- self:winch_Wind();
-		-- end;
-		-- -- winch_Unwind
-		-- if InputBinding.hasEvent(InputBinding.winch_Unwind) then					
-			-- self:winch_Unwind();
-		-- end;
-		
 		-- winch_Increase
 		if InputBinding.hasEvent(InputBinding.winch_Increase) then					
 			self:winch_Increase();
@@ -96,37 +74,16 @@ function winch:onDetach()
 	self.vehicleJoint = nil;
 end;
 
-function toggleProactive(mode)
+function winch:toggleProactive(mode)
 	self.proActiveMode = mode ; 
-	print("proActivetoggled");
+	print("proActivetoggled : ", tostring(mode));
 end;
-	
-function winch:winchProactiveOn()
-	print("winchProactiveOn") ; 
-end;
-
-function winch:winchProactiveOff()
-	print("winchProactiveOff") ; 
-	self:setBeaconLightsVisibility(not self.beaconLightsActive);
-end;
-
--- function winch:winch_Wind()
-	-- print("winch_Wind") ; 
--- end;
-
--- function winch:winch_Unwind()
-	-- print("winch_Unwind") ; 
--- end;
 
 function winch:winch_Increase()
 	print("winch_Increase") ; 
-	if self.joints ~= nil then
-		for i,v in ipairs(self.joints) do 
-			print(i,v) 
-		end
-	else
-		print("self.joints is NIL");
-	end ;
+	for i,v in ipairs(self.Joints) do 
+		print(i,v) 
+	end
 end;
 
 function winch:winch_Decrease()
