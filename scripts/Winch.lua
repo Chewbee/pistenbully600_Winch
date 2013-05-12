@@ -27,7 +27,7 @@ function winch:load(xmlFile)
 	self.tractionForce = 0 ;
 	self.tractionStep = 1 ;
 	
-	self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
+	-- self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
 	
 	self.groomer	= self.components[1].node; 
 	self.winchArm	= self.components[2].node;
@@ -63,8 +63,13 @@ function winch:update(dt)
 end;
 
 function winch:updateTick(dt)
-	local x,y,z = getWorldTranslation(self.winchArm); 
-	local dx,dy,dz = getWorldTranslation(self.cable); 
+	winch:drawDebugLinefor(self.winchArm, self.cable); 
+	winch:drawDebugLinefor(self.cable, self.hook);
+end;
+
+function winch:drawDebugLinefor(startComponent, endComponent)
+	local x,y,z = getWorldTranslation(startComponent); 
+	local dx,dy,dz = getWorldTranslation(endComponent); 
 	drawDebugLine( x,y,z, 1, 0, 0, dx,dy,dz, 0, 1, 0);
 end;
 
