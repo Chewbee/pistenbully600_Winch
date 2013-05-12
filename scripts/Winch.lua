@@ -45,7 +45,7 @@ function winch:keyEvent(unicode, sym, modifier, isDown)
 end;
 
 function winch:update(dt)
-	--if self:getIsActiveForInput() then
+	if self:getIsActive() then
 		-- winch_Proactive_Toggle
 		if InputBinding.hasEvent(InputBinding.winch_Proactive_Toggle) then					
 			self:toggleProactive(not self.proActiveMode);
@@ -58,13 +58,12 @@ function winch:update(dt)
 		if InputBinding.hasEvent(InputBinding.winch_Decrease) then					
 			self:winch_Decrease();
 		end;
-		
-	--end;
+	end;
 end;
 
 function winch:updateTick(dt)
-	winch:drawDebugLinefor(self.winchArm, self.cable); 
-	winch:drawDebugLinefor(self.cable, self.hook);
+	winch:drawDebugLinefor(self.groomer, self.winchArm); 
+	winch:drawDebugLinefor(self.winchArm, self.hook);
 end;
 
 function winch:drawDebugLinefor(startComponent, endComponent)
@@ -101,6 +100,7 @@ function winch:toggleProactive(mode)
 		
 		-- to add a force to the wincharm joint BUT at position defined by the last three digits, three first one being force vector
 		-- addForce(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
+		-- removeFromPhysics(nodeId) to remove it and addToPhysics(nodeId) 
 		addImpulse(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
 		
 		-- setRigidBodyType(winchArm,"NoRigidBody");
