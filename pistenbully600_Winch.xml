@@ -144,9 +144,9 @@
 		<component2 centerOfMass="0 0 0" solverIterationCount="10" />
 		<component3 centerOfMass="0 -0.06584 0" solverIterationCount="90" />
 		<component4 centerOfMass="0 -0.36 -0.031" solverIterationCount="90" />
-		<joint component1="1" component2="0" index="1>" rotLimit="0 180 0" transLimit="0 0 0" />
-		<!--joint component1="2" component2="1" index="2>" rotLimit="20 0 0" transLimit="0 0 0" />
-		<joint component1="3" component2="2" index="3>" rotLimit="60 0 60" transLimit="0 0 0" /-->
-		<joint component1="3" component2="1" index="3>" rotLimit="60 0 60" transLimit="0 0 0" />
+		<joint component1="1" component2="0" index="1>"	rotLimit="0 180 0"	transLimit="0 0 0" />
+		<joint component1="2" component2="1" index="2>"	rotLimit="10 0 0"	transLimit="0 0 0" />
+		<joint component1="3" component2="2" index="3>"	rotLimit="60 0 60"	transLimit="0 0 0" />
+		<!--joint component1="3" component2="1" index="3>" rotLimit="60 0 60" transLimit="0 0 0" /-->
     </components>
 </vehicle>

@@ -28,6 +28,11 @@ function winch:load(xmlFile)
 	self.tractionStep = 1 ;
 	
 	self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
+	
+	self.groomer	= self.components[1].node; 
+	self.winchArm	= self.components[2].node;
+	self.cable		= self.components[3].node;
+	self.hook		= self.components[4].node;
 end;	
 	
 function winch:delete()
@@ -80,15 +85,16 @@ function winch:toggleProactive(mode)
 	print("proActivetoggled : ", tostring(mode));
 	if mode == false then 
 		local gx, gy, gz, px, py, pz = 0,0,0,0,0,0 ;
-		local groomer	= self.components[1].node; 
-		local winchArm	= self.components[2].node;
-		gx, gy, gz = localDirectionToWorld(groomer, 0, 0, 1);
-		px, py, pz = localDirectionToWorld(winchArm, 0, 0, 1);
-		print(string.format("Groomer   GX %.2f GY %.2f GZ%.2f %s", gx,gy,gz,getRigidBodyType(groomer)));
-		print(string.format("Winch Arm PX %.2f PY %.2f PZ%.2f %s",px,py,pz,getRigidBodyType(winchArm)));
+		-- local groomer	= self.components[1].node; 
+		-- local winchArm	= self.components[2].node;
+		gx, gy, gz = localDirectionToWorld(self.groomer, 0, 0, 1);
+		px, py, pz = localDirectionToWorld(self.winchArm, 0, 0, 1);
+		print(string.format("Groomer   GX %.2f GY %.2f GZ%.2f %s", gx,gy,gz,getRigidBodyType(self.groomer)));
+		print(string.format("Winch Arm PX %.2f PY %.2f PZ%.2f %s",px,py,pz,getRigidBodyType(self.winchArm)));
 		
 		--addImpulse(winchArm, 10, 0, 0, 0, 0, 0, true);
-		addForce(winchArm, 0, 10, 0, 0, 0, 0, true);
+		-- to add a force to the wincharm joint BUT at position defined by the last three digits, three first one being force vector
+		addForce(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
 		
 		-- setRigidBodyType(winchArm,"NoRigidBody");
 		-- link(211, winchArm);
