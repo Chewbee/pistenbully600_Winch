@@ -47,7 +47,7 @@ function towing:writeStream(streamId, connection)
 	end;
 end;
 function towing:update(dt)
-	if self:getIsActiveForInput() then
+	--if self:getIsActiveForInput() then
 		if self.lastVehicle ~= nil then 
 			if not self.isUsed then
 				if InputBinding.hasEvent(InputBinding.TOWING_AttachObject) then					
@@ -61,10 +61,10 @@ function towing:update(dt)
 				end;
 			end;
 		end;
-	end;
+	--end;
 end;
 function towing:updateTick(dt)
-	if self:getIsActiveForInput() then
+	--if self:getIsActiveForInput() then
 		if not self.isUsed then
 			self.lastVehicle = nil;
 			local x,y,z = getWorldTranslation(self.attachPoint);
@@ -93,7 +93,7 @@ function towing:updateTick(dt)
 				end;
 			end;
 		end;
-	end;
+	--end;
 end;
 function towing:attachObject(vehicleId,jointId,noEventSend,vehicle)
 	setAttachEvent.sendEvent(self,vehicleId,jointId,noEventSend);

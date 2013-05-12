@@ -38,7 +38,7 @@ function winch:keyEvent(unicode, sym, modifier, isDown)
 end;
 
 function winch:update(dt)
-	if self:getIsActiveForInput() then
+	--if self:getIsActiveForInput() then
 		-- winch_Proactive_Toggle
 		if InputBinding.hasEvent(InputBinding.winch_Proactive_Toggle) then					
 			self:toggleProactive(not self.proActiveMode);
@@ -52,7 +52,7 @@ function winch:update(dt)
 			self:winch_Decrease();
 		end;
 		
-	end;
+	--end;
 end;
 
 function winch:updateTick(dt)
@@ -61,11 +61,10 @@ function winch:updateTick(dt)
 end;
 
 function winch:draw()
-	if self:getIsActiveForInput() then
+	--if self:getIsActiveForInput() then
 		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Proactive_Toggle)..":"..g_i18n:getText("winch_Proactive_Toggle"));
-		--g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Wind).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Unwind)..":"..g_i18n:getText("winch_Winding"));
 		g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)..":"..g_i18n:getText("winch_Torque"));
-	end;
+	--end;
 end;
 
 function winch:onAttach()
