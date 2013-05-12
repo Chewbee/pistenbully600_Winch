@@ -84,17 +84,19 @@ function winch:toggleProactive(mode)
 	self.proActiveMode = mode ; 
 	print("proActivetoggled : ", tostring(mode));
 	if mode == false then 
-		local gx, gy, gz, px, py, pz = 0,0,0,0,0,0 ;
+		local gx, gy, gz, px, py, pz, cosPhi = 0,0,0,0,0,0,0 ;
 		-- local groomer	= self.components[1].node; 
 		-- local winchArm	= self.components[2].node;
 		gx, gy, gz = localDirectionToWorld(self.groomer, 0, 0, 1);
 		px, py, pz = localDirectionToWorld(self.winchArm, 0, 0, 1);
 		print(string.format("Groomer   GX %.2f GY %.2f GZ%.2f %s", gx,gy,gz,getRigidBodyType(self.groomer)));
 		print(string.format("Winch Arm PX %.2f PY %.2f PZ%.2f %s",px,py,pz,getRigidBodyType(self.winchArm)));
+		cosPhi = Utils.dotProduct(gx, gy, gz, px, py, pz);
 		
-		--addImpulse(winchArm, 10, 0, 0, 0, 0, 0, true);
+		
 		-- to add a force to the wincharm joint BUT at position defined by the last three digits, three first one being force vector
-		addForce(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
+		-- addForce(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
+		addImpulse(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
 		
 		-- setRigidBodyType(winchArm,"NoRigidBody");
 		-- link(211, winchArm);
