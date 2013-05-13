@@ -48,7 +48,7 @@
 		</fr>
     </description>
     <iconFilename>textures/store.dds</iconFilename>
-    <version>0.1 alpha</version>
+    <version>0.5 alpha</version>
 	<extraSourceFiles>
 		<sourceFile filename="scripts/MPEvent.lua" />
 		<sourceFile filename="scripts/SetAttachEvent.lua" />
@@ -100,7 +100,7 @@
             <rotation>0</rotation>
             <image active="textures/store.dds"/>
             <price>300000</price>
-            <xmlFilename>pistenbully600_Winch.xml</xmlFilename>
+            <xmlFilename>PistenBully600PolarW.xml</xmlFilename>
         </storeItem>
     </storeItems>
 	
