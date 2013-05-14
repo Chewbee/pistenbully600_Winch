@@ -25,9 +25,9 @@
             <de>Activer/desactiver mode pro actif de treuil</de>
         </text>
 		<text name="winch_Torque">
-            <fr> +/- force de traction du treuil</fr>
-			<en> +/- winch pulling force</en>
-            <de> +/- force du treuil</de>
+            <fr>( +/- ) force de traction du treuil</fr>
+			<en>( +/- ) winch pulling force</en>
+            <de>( +/- ) force du treuil</de>
         </text>
 		<text name="winch_Increase">
             <fr>Augmenter la traction du treuil</fr>
@@ -48,7 +48,7 @@
 		</fr>
     </description>
     <iconFilename>textures/store.dds</iconFilename>
-    <version>0.5 alpha</version>
+    <version>0.7 alpha</version>
 	<extraSourceFiles>
 		<sourceFile filename="scripts/MPEvent.lua" />
 		<sourceFile filename="scripts/SetAttachEvent.lua" />

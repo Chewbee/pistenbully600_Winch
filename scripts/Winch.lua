@@ -74,7 +74,7 @@ function winch:update(dt)
 end;
 
 function winch:updateTick(dt)
-	-- winch:drawDebugLinefor(self.groomer, self.winchArm); 
+	winch:drawDebugLinefor(self.groomer, self.winchBase); 
 	-- winch:drawDebugLinefor(self.winchArm, self.cable);
 	-- winch:drawDebugLinefor(self.winchArm, self.tipPoint);
 	-- winch:drawDebugLinefor(self.winchArm, self.hook);
@@ -90,7 +90,7 @@ end;
 function winch:draw()
 	g_currentMission:addHelpButtonText(g_i18n:getText("winch_Proactive_Toggle"), InputBinding.winch_Proactive_Toggle);
 	--g_currentMission:addHelpButtonText(g_i18n:getText("winch_Torque"),string.format("%s / %s",InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase),InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)));
-	g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)..":"..g_i18n:getText("winch_Torque").."("..self.tractionForce..")");
+	g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase).."/"..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)..":"..g_i18n:getText("winch_Torque").."("..self.tractionForce..")");
 end;
 
 function winch:onAttach()
@@ -114,7 +114,8 @@ function winch:toggleProactive(mode)
 		cosPhi = Utils.dotProduct(gx, gy, gz, px, py, pz);
 		print(string.format("Phi %f",math.deg(math.acos(cosPhi)))) ; 
 		
-		-- link(g_currentMission:getRootNode(), self.winchArm) ;
+		unlink(self.winchArm);
+		link(g_currentMission:getRootNode(), self.winchArm) ;
 		setJointFrame(self.winchArm,0, self.winchBase);
 		addToPhysics(self.winchArm) ;
 		self.noPhysicWinch = false ; 
@@ -123,6 +124,7 @@ function winch:toggleProactive(mode)
 		--to remove it and place it at starup condition
 		removeFromPhysics(self.winchArm); 
 		self.noPhysicWinch = true ; 
+		--link(self.winchBase, self.winchArm);
 		
 		-- to add a force to the wincharm joint BUT at position defined by the last three digits, three first one being force vector
 		-- addForce(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
@@ -137,6 +139,8 @@ function winch:winch_Increase()
 	else 
 		print("Maximum winch traction force reached");
 	end;
+	local x,y,z = getWorldTranslation(self.tipPoint);
+	addForce(self.winchArm, self.tractionForce, 0, 0, x,y,z, true);
 end;
 
 function winch:winch_Decrease()
