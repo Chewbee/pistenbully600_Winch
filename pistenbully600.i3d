@@ -87,6 +87,9 @@
       <Texture fileId="19"/>
       <Normalmap fileId="24"/>
     </Material>
+    <Material name="phong1" materialId="293" ambientColor="1 1 1" cosPower="20" specularColor="0.5 0.5 0.5">
+      <Texture fileId="23"/>
+    </Material>
   </Materials>
 
 
@@ -8765,7 +8768,7 @@
         <Subset firstVertex="0" numVertices="104" firstIndex="0" numIndices="414"/>
       </Subsets>
     </IndexedTriangleSet>
-    <IndexedTriangleSet name="HookShape" shapeId="38" bvCenter="-0.00304335 -0.234616 -0.000511661" bvRadius="0.246412">
+    <IndexedTriangleSet name="HookShape" shapeId="39" bvCenter="-0.00304335 -0.234616 -0.000511661" bvRadius="0.246412">
       <Vertices count="97" normal="true" uv0="true" uv1="true" uv2="true" uv3="true" tangent="true">
         <v p="-0.0452832 -0.360762 -0.152977" n="-0.0242954 -0.0457993 -0.998655" t0="0.730905 0.582768" t1="0.730905 0.582768" t2="0.730905 0.582768" t3="0.730905 0.582768"/>
         <v p="-0.00583621 -0.239982 -0.115437" n="-0.0231734 0.303589 -0.952521" t0="0.71837 0.583463" t1="0.71837 0.583463" t2="0.71837 0.583463" t3="0.71837 0.583463"/>
@@ -29404,7 +29407,7 @@
         <Subset firstVertex="0" numVertices="4" firstIndex="0" numIndices="6"/>
       </Subsets>
     </IndexedTriangleSet>
-    <IndexedTriangleSet name="cableShape" shapeId="37" bvCenter="0 -0.053838 0" bvRadius="0.0541517">
+    <IndexedTriangleSet name="cableShape" shapeId="38" bvCenter="0 -0.053838 0" bvRadius="0.0541517">
       <Vertices count="66" normal="true" uv0="true">
         <v p="0 -0.102498 -0.0164763" n="-2.33359e-007 -0.0745077 -0.99722" t0="0.010546 -0.0670071"/>
         <v p="-0.00509147 -0.102498 -0.0156699" n="-0.308158 -0.0745077 -0.948413" t0="0.0594929 -0.0670071"/>
@@ -38196,6 +38199,45 @@
         <Subset firstVertex="0" numVertices="24" firstIndex="0" numIndices="36"/>
       </Subsets>
     </IndexedTriangleSet>
+    <IndexedTriangleSet name="cableUnitShape" shapeId="37" bvCenter="-5.12227e-009 3.95812e-009 0.0501893" bvRadius="0.0511957">
+      <Vertices count="20" normal="true" uv0="true">
+        <v p="0.00339919 0.0104616 0.000189267" n="-0.309017 0.951057 0" t0="-0.00269663 -6.19888e-005"/>
+        <v p="-0.00889919 0.00646564 0.000189267" n="-0.309017 0.951057 0" t0="0.19762 -6.19888e-005"/>
+        <v p="0.00339919 0.0104616 0.100189" n="-0.309017 0.951057 0" t0="-0.00269663 1.00135"/>
+        <v p="-0.00889919 0.00646564 0.100189" n="-0.309017 0.951057 0" t0="0.19762 1.00135"/>
+        <v p="-0.00889919 0.00646564 0.000189267" n="-1 4.50131e-008 0" t0="0.19762 -6.19888e-005"/>
+        <v p="-0.00889919 -0.00646564 0.000189267" n="-1 4.50131e-008 0" t0="0.397936 -6.19888e-005"/>
+        <v p="-0.00889919 0.00646564 0.100189" n="-1 4.50131e-008 0" t0="0.19762 1.00135"/>
+        <v p="-0.00889919 -0.00646564 0.100189" n="-1 4.50131e-008 0" t0="0.397936 1.00135"/>
+        <v p="-0.00889919 -0.00646564 0.000189267" n="-0.309017 -0.951057 0" t0="0.397936 -6.19888e-005"/>
+        <v p="0.00339919 -0.0104616 0.000189267" n="-0.309017 -0.951057 0" t0="0.598252 -6.19888e-005"/>
+        <v p="-0.00889919 -0.00646564 0.100189" n="-0.309017 -0.951057 0" t0="0.397936 1.00135"/>
+        <v p="0.00339919 -0.0104616 0.100189" n="-0.309017 -0.951057 0" t0="0.598252 1.00135"/>
+        <v p="0.00339919 -0.0104616 0.000189267" n="0.809017 -0.587785 0" t0="0.598252 -6.19888e-005"/>
+        <v p="0.011 -2.07747e-017 0.000189267" n="0.809017 -0.587785 0" t0="0.798568 -6.19888e-005"/>
+        <v p="0.00339919 -0.0104616 0.100189" n="0.809017 -0.587785 0" t0="0.598252 1.00135"/>
+        <v p="0.011 1.4298e-018 0.100189" n="0.809017 -0.587785 0" t0="0.798568 1.00135"/>
+        <v p="0.011 -2.07747e-017 0.000189267" n="0.809017 0.587785 0" t0="0.798568 -6.19888e-005"/>
+        <v p="0.00339919 0.0104616 0.000189267" n="0.809017 0.587785 0" t0="0.998885 -6.19888e-005"/>
+        <v p="0.011 1.4298e-018 0.100189" n="0.809017 0.587785 0" t0="0.798568 1.00135"/>
+        <v p="0.00339919 0.0104616 0.100189" n="0.809017 0.587785 0" t0="0.998885 1.00135"/>
+      </Vertices>
+      <Triangles count="10">
+        <t vi="0 1 2"/>
+        <t vi="2 1 3"/>
+        <t vi="4 5 6"/>
+        <t vi="6 5 7"/>
+        <t vi="8 9 10"/>
+        <t vi="10 9 11"/>
+        <t vi="12 13 14"/>
+        <t vi="14 13 15"/>
+        <t vi="16 17 18"/>
+        <t vi="18 17 19"/>
+      </Triangles>
+      <Subsets count="1">
+        <Subset firstVertex="0" numVertices="20" firstIndex="0" numIndices="30"/>
+      </Subsets>
+    </IndexedTriangleSet>
   </Shapes>
 
 
@@ -38308,16 +38350,17 @@
     <Shape name="Winch" translation="0 1.89558 -0.99138" dynamic="true" compound="true" collisionMask="2105410" staticFriction="100" dynamicFriction="100" density="0.3" nodeId="212" materialIds="10" shapeId="36" castsShadows="true" receiveShadows="true">
       <TransformGroup name="transform" nodeId="213"/>
       <TransformGroup name="winchTip" translation="0 0.876278 4.71148" nodeId="214">
-        <Shape name="cableUnit" translation="4.74286e-010 -0.21335 0.0257817" rotation="0 0 180" nodeId="266" materialIds="46" shapeId="37" castsShadows="true" receiveShadows="true"/>
+        <Shape name="cableUnit" translation="0 -0.10423 0.0314948" rotation="90 0 0" nodeId="313" materialIds="293" shapeId="37" castsShadows="true" receiveShadows="true"/>
       </TransformGroup>
     </Shape>
-    <Shape name="cable" translation="-1.81774e-008 2.66298 3.74598" rotation="177.94 -0 180" nodeId="215" materialIds="46" shapeId="37" castsShadows="true" receiveShadows="true">
+    <Shape name="cable" translation="-1.81774e-008 2.66298 3.74598" rotation="177.94 -0 180" visibility="false" nodeId="215" materialIds="46" shapeId="38" castsShadows="true" receiveShadows="true">
       <TransformGroup name="transform" translation="0 -0.09838 0" nodeId="216"/>
     </Shape>
-    <Shape name="Hook" translation="0 2.56465 3.74198" rotation="-0.0791294 -0 0" dynamic="true" compound="true" collisionMask="2105410" staticFriction="5" dynamicFriction="5" density="0.03" solverIterationCount="10" nodeId="217" materialIds="48" shapeId="38" castsShadows="true" receiveShadows="true">
+    <Shape name="Hook" translation="0 2.56466 3.74981" rotation="-0.0791294 -0 0" dynamic="true" compound="true" collisionMask="2105410" staticFriction="5" dynamicFriction="5" density="0.03" solverIterationCount="10" nodeId="217" materialIds="48" shapeId="39" castsShadows="true" receiveShadows="true">
       <TransformGroup name="hookAttacherJoint" translation="-1.74767e-008 -0.36 -0.031" rotation="0 -44.2644 -90" nodeId="218"/>
     </Shape>
     <Light name="light" rotation="-40 0 -30" nodeId="219" type="directional" diffuseColor="1 1 1" emitDiffuse="true" specularColor="1 1 1" emitSpecular="true" castShadowMap="true" depthMapBias="0.0012" depthMapSlopeScaleBias="2" depthMapSlopeClamp="0.0005" depthMapResolution="1024" shadowFarDistance="80" shadowTextureOffset="0.45" shadowExtrusionDistance="200" shadowPerspective="false" decayRate="4" range="500"/>
+    <Shape name="cableUnit" nodeId="297" materialIds="293" shapeId="37" castsShadows="true" receiveShadows="true"/>
   </Scene>
 
   <UserAttributes>

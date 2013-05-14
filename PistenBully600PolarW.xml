@@ -111,7 +111,7 @@
         <driveGroundParticleSystem direction="-1" minScale="0.2" maxScale="1.0" minSpeed="4" maxSpeed="25" position="-1.65 0 2.1" rotation="0 180 0" file="$data/vehicles/particleSystems/snowDustParticleSystemBig.i3d" />
         <driveGroundParticleSystem direction="-1" minScale="0.2" maxScale="1.0" minSpeed="4" maxSpeed="25" position="1.65 0 2.75" rotation="0 180 0" file="$data/vehicles/particleSystems/snowChunksParticleSystemBig.i3d" />
         <driveGroundParticleSystem direction="-1" minScale="0.2" maxScale="1.0" minSpeed="4" maxSpeed="25" position="1.65 0 2.1" rotation="0 180 0" file="$data/vehicles/particleSystems/snowDustParticleSystemBig.i3d" />
-	</driveGroundParticleSystems>
+	</driveGroundParticleSystems> 
     <attacherJoints>
         <attacherJoint jointType="groomer" index="15|0|0" rotationNode="15" maxRot="0 0 0" rotationNode2="15|0" maxRot2="35 0 0" maxTransLimit="0 0 0" maxRotLimit="0 0 32" moveTime="1.5">
         </attacherJoint>
@@ -134,7 +134,7 @@
 	<characterNode index="25" cameraMinDistance="0.5" />
 	
 	 <movingParts>	
-		<movingPart index="1>1|0" referencePoint="3>" referenceFrame="0>"  scaleZ="true" />       		
+		<movingPart index="1>1|0" referencePoint="3>" referenceFrame="3>"  scaleZ="true" />       		
     </movingParts>
     <springs movingPart1="1>1|0"  />
 	
