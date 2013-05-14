@@ -28,6 +28,8 @@ function winch:load(xmlFile)
 	self.tractionForce = 0 ;
 	self.tractionStep = 1 ;
 	self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
+	self.winchBase = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.winchBase#index"));
+	self.noPhysicWinch = false ; 
 	-- the skeleton parts
 	self.groomer	= self.components[1].node; 
 	self.winchArm	= self.components[2].node;
@@ -61,13 +63,22 @@ function winch:update(dt)
 			self:winch_Decrease();
 		end;
 	end;
+	
+	--setJointFrame(self.winchArm,1, self.winchBase);
+	local x,y,z = getWorldTranslation(self.winchBase);
+	local a,b,c = getWorldRotation(self.winchBase);
+	if self.noPhysicWinch then
+		setTranslation(self.winchArm,x,y,z);
+		setRotation(self.winchArm,a,b,c);
+	end ; 
 end;
 
 function winch:updateTick(dt)
-	winch:drawDebugLinefor(self.groomer, self.winchArm); 
-	winch:drawDebugLinefor(self.winchArm, self.cable);
-	winch:drawDebugLinefor(self.winchArm, self.tipPoint);
-	winch:drawDebugLinefor(self.winchArm, self.hook);
+	-- winch:drawDebugLinefor(self.groomer, self.winchArm); 
+	-- winch:drawDebugLinefor(self.winchArm, self.cable);
+	-- winch:drawDebugLinefor(self.winchArm, self.tipPoint);
+	-- winch:drawDebugLinefor(self.winchArm, self.hook);
+	
 end;
 
 function winch:drawDebugLinefor(startComponent, endComponent)
@@ -78,7 +89,8 @@ end;
 
 function winch:draw()
 	g_currentMission:addHelpButtonText(g_i18n:getText("winch_Proactive_Toggle"), InputBinding.winch_Proactive_Toggle);
-	g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)..":"..g_i18n:getText("winch_Torque"));
+	--g_currentMission:addHelpButtonText(g_i18n:getText("winch_Torque"),string.format("%s / %s",InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase),InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)));
+	g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase).." / "..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)..":"..g_i18n:getText("winch_Torque").."("..self.tractionForce..")");
 end;
 
 function winch:onAttach()
@@ -97,24 +109,24 @@ function winch:toggleProactive(mode)
 		
 		gx, gy, gz = localDirectionToWorld(self.groomer, 0, 0, 1);
 		px, py, pz = localDirectionToWorld(self.winchArm, 0, 0, 1);
-		print(string.format("Groomer   GX %.2f GY %.2f GZ%.2f %s", gx,gy,gz,getRigidBodyType(self.groomer)));
-		print(string.format("Winch Arm PX %.2f PY %.2f PZ%.2f %s",px,py,pz,getRigidBodyType(self.winchArm)));
+		print(string.format("Groomer   GX %.2f GY %.2f GZ%.2f %s", math.deg(gx),math.deg(gy),math.deg(gz),getRigidBodyType(self.groomer)));
+		print(string.format("Winch Arm PX %.2f PY %.2f PZ%.2f %s", math.deg(px),math.deg(py),math.deg(pz),getRigidBodyType(self.winchArm)));
 		cosPhi = Utils.dotProduct(gx, gy, gz, px, py, pz);
-		print(string.format("Phi %f",math.acos(cosPhi)* 180 / 3.14159265359)) ; 
+		print(string.format("Phi %f",math.deg(math.acos(cosPhi)))) ; 
+		
+		-- link(g_currentMission:getRootNode(), self.winchArm) ;
+		setJointFrame(self.winchArm,0, self.winchBase);
+		addToPhysics(self.winchArm) ;
+		self.noPhysicWinch = false ; 
+	else
+		-- setJointFrame(self.winchArm,1, self.winchBase);
+		--to remove it and place it at starup condition
+		removeFromPhysics(self.winchArm); 
+		self.noPhysicWinch = true ; 
 		
 		-- to add a force to the wincharm joint BUT at position defined by the last three digits, three first one being force vector
 		-- addForce(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
-		-- removeFromPhysics(nodeId) to remove it and addToPhysics(nodeId) 
-		addImpulse(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
-		
-		-- setRigidBodyType(winchArm,"NoRigidBody");
-		-- link(211, winchArm);
-		-- print(string.format("Winch Arm %s",getRigidBodyType(winchArm)));
-	else
-		-- setRigidBodyType(self.winchArm,"Static");
-		setJointFrame(self.winchArm,0, 211);
-		-- setRigidBodyType(self.winchArm,"Dynamic");
-		-- unlink(winchArm) ;
+		-- addImpulse(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
 	end ; 
 end;
 

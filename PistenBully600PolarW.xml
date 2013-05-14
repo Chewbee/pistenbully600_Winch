@@ -122,6 +122,7 @@
 	<attacherPoint index="3>0" rootNode="3>"/>
 	
 	<tipPoint index="1>1|0" rootNode="1>"/>
+	<winchBase index="0>30" rootNode="0>"/>
 	
 	<trailerAttacherJoints>
         <trailerAttacherJoint index="16" />
@@ -148,6 +149,6 @@
 		<joint component1="2" component2="1" index="2>"	rotLimit="0 0 0"	transLimit="0 0.01 0" />
 		<joint component1="3" component2="2" index="3>"	rotLimit="0 30 0"	transLimit="0 0 0" />
 		-->
-		<joint component1="3" component2="1" index="3>" rotLimit="30 0 30" transLimit="0 0 0" />
+		<joint component1="3" component2="1" index="3>" rotLimit="5 0 5" transLimit="0 0 0" />
     </components>
 </vehicle>
