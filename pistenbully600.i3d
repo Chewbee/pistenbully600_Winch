@@ -38307,7 +38307,9 @@
     </Shape>
     <Shape name="Winch" translation="0 1.89558 -0.99138" dynamic="true" compound="true" collisionMask="2105410" staticFriction="100" dynamicFriction="100" density="0.3" nodeId="212" materialIds="10" shapeId="36" castsShadows="true" receiveShadows="true">
       <TransformGroup name="transform" nodeId="213"/>
-      <TransformGroup name="winchTip" translation="0 0.876278 4.71148" nodeId="214"/>
+      <TransformGroup name="winchTip" translation="0 0.876278 4.71148" nodeId="214">
+        <Shape name="cableUnit" translation="4.74286e-010 -0.21335 0.0257817" rotation="0 0 180" nodeId="266" materialIds="46" shapeId="37" castsShadows="true" receiveShadows="true"/>
+      </TransformGroup>
     </Shape>
     <Shape name="cable" translation="-1.81774e-008 2.66298 3.74598" rotation="177.94 -0 180" nodeId="215" materialIds="46" shapeId="37" castsShadows="true" receiveShadows="true">
       <TransformGroup name="transform" translation="0 -0.09838 0" nodeId="216"/>

@@ -27,11 +27,11 @@ function winch:load(xmlFile)
 	self.proActiveMode = false ; 
 	self.tractionForce = 0 ;
 	self.tractionStep = 1 ;
-	-- self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
+	self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
 	-- the skeleton parts
 	self.groomer	= self.components[1].node; 
 	self.winchArm	= self.components[2].node;
-	self.cable		= self.components[3].node;
+	self.cable		= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.movingPart#index")); --self.components[3].node;
 	self.hook		= self.components[4].node;
 	-- the cable objet (not physics) to scale)
 	cableUnit = loadI3DFile("resources/cableUnit.i3d");
@@ -65,6 +65,8 @@ end;
 
 function winch:updateTick(dt)
 	winch:drawDebugLinefor(self.groomer, self.winchArm); 
+	winch:drawDebugLinefor(self.winchArm, self.cable);
+	winch:drawDebugLinefor(self.winchArm, self.tipPoint);
 	winch:drawDebugLinefor(self.winchArm, self.hook);
 end;
 

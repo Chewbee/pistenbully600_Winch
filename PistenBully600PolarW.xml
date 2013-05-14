@@ -121,7 +121,7 @@
 	
 	<attacherPoint index="3>0" rootNode="3>"/>
 	
-	<tipPoint index="1>1" rootNode="1>"/>
+	<tipPoint index="1>1|0" rootNode="1>"/>
 	
 	<trailerAttacherJoints>
         <trailerAttacherJoint index="16" />
@@ -134,18 +134,20 @@
 	<characterNode index="25" cameraMinDistance="0.5" />
 	
 	 <movingParts>	
-		<movingPart index="2>0" referencePoint="1>1" referenceFrame="3>" scaleZ="true" />       		
+		<movingPart index="1>1|0" referencePoint="3>" referenceFrame="0>"  scaleZ="true" />       		
     </movingParts>
-    <springs movingPart1="2>0"  />
+    <springs movingPart1="1>1|0"  />
 	
     <components count="4">
-        <component1 centerOfMass="0 0 0" solverIterationCount="4" />
-		<component2 centerOfMass="0 0 0" solverIterationCount="4" />
-		<component3 centerOfMass="0 -0.09838 0" solverIterationCount="4" />
-		<component4 centerOfMass="0 -0.36 -0.031" solverIterationCount="4" />
+        <component1 centerOfMass="0 0 0" 			solverIterationCount="4" />
+		<component2 centerOfMass="0 0 0" 			solverIterationCount="4" />
+		<component3 centerOfMass="0 -0.09838 0" 	solverIterationCount="4" />
+		<component4 centerOfMass="0 -0.36 -0.031" 	solverIterationCount="4" />
 		<joint component1="1" component2="0" index="1>"	rotLimit="0 180 0"	transLimit="0 0 0" />
-		<!--joint component1="2" component2="1" index="2>"	rotLimit="0 0 0"	transLimit="0 0.01 0" />
-		<joint component1="3" component2="2" index="3>"	rotLimit="0 30 0"	transLimit="0 0 0" /-->
+		<!--
+		<joint component1="2" component2="1" index="2>"	rotLimit="0 0 0"	transLimit="0 0.01 0" />
+		<joint component1="3" component2="2" index="3>"	rotLimit="0 30 0"	transLimit="0 0 0" />
+		-->
 		<joint component1="3" component2="1" index="3>" rotLimit="30 0 30" transLimit="0 0 0" />
     </components>
 </vehicle>
