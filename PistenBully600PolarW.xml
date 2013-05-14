@@ -121,7 +121,7 @@
 	
 	<attacherPoint index="3>0" rootNode="3>"/>
 	
-	<!--tipPoint index="4>" rootNode="0"/-->
+	<tipPoint index="1>1" rootNode="1>"/>
 	
 	<trailerAttacherJoints>
         <trailerAttacherJoint index="16" />
@@ -134,10 +134,9 @@
 	<characterNode index="25" cameraMinDistance="0.5" />
 	
 	 <movingParts>	
-		<movingPart index="1>0" referencePoint="3>0" referenceFrame="0>" scaleY="true" />       		
+		<movingPart index="2>0" referencePoint="1>1" referenceFrame="3>" scaleZ="true" />       		
     </movingParts>
-
-    <springs movingPart1="1>0"  />
+    <springs movingPart1="2>0"  />
 	
     <components count="4">
         <component1 centerOfMass="0 0 0" solverIterationCount="4" />

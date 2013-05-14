@@ -19,20 +19,22 @@ function winch.prerequisitesPresent(specializations)
 end;
 
 function winch:load(xmlFile)
+	-- the winch functions
 	self.toggleProactive		= winch.toggleProactive;
 	self.winch_Increase			= winch.winch_Increase  ;
 	self.winch_Decrease			= winch.winch_Decrease  ;
-	
+	-- the winch variables
 	self.proActiveMode = false ; 
 	self.tractionForce = 0 ;
 	self.tractionStep = 1 ;
-	
 	-- self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
-	
+	-- the skeleton parts
 	self.groomer	= self.components[1].node; 
 	self.winchArm	= self.components[2].node;
 	self.cable		= self.components[3].node;
 	self.hook		= self.components[4].node;
+	-- the cable objet (not physics) to scale)
+	cableUnit = loadI3DFile("resources/cableUnit.i3d");
 end;	
 	
 function winch:delete()

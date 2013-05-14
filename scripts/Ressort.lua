@@ -3,7 +3,7 @@ Ressort = {};
 
 
 function Ressort.prerequisitesPresent(specializations)
-    return SpecializationUtil.hasSpecialization(Winch, specializations);
+    return SpecializationUtil.hasSpecialization(winch, specializations);
 end;
 
 function Ressort:load(xmlFile)

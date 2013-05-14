@@ -56,7 +56,7 @@
     <specializations>
 		<specialization name="towing" className="towing" filename="scripts/towing.lua"/>
  		<specialization name="winch" className="winch" filename="scripts/winch.lua"/>
-		<!--specialization name="ressort" className="Ressort" filename="scripts/Ressort.lua" /-->
+		<specialization name="ressort" className="Ressort" filename="scripts/Ressort.lua" />
 	</specializations>	
     <vehicleTypes>
         <type name="PistenBully600PolarW" className="Vehicle" filename="$dataS/scripts/vehicles/Vehicle.lua">
@@ -72,7 +72,7 @@
 			<specialization name="animatedVehicle" />
 			<specialization name="towing"  />
 			<specialization name="winch"  />
-			<!--specialization name="ressort" /-->
+			<specialization name="ressort" />
         </type>
     </vehicleTypes>
     <storeItems>
