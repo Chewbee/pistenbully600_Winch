@@ -23,6 +23,7 @@ function winch:load(xmlFile)
 	self.toggleProactive		= winch.toggleProactive;
 	self.winch_Increase			= winch.winch_Increase  ;
 	self.winch_Decrease			= winch.winch_Decrease  ;
+	self.applyForceVector		= winch.applyForceVector ;
 	-- the winch variables
 	self.proActiveMode = false ; 
 	self.tractionForce = 0 ;
@@ -35,8 +36,9 @@ function winch:load(xmlFile)
 	self.winchArm	= self.components[2].node;
 	self.cable		= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.movingPart#index")); --self.components[3].node;
 	self.hook		= self.components[4].node;
+	self.hookpoint	= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.attacherPoint#index"));
 	-- the cable objet (not physics) to scale)
-	cableUnit = loadI3DFile("resources/cableUnit.i3d");
+	-- cableUnit = loadI3DFile("resources/cableUnit.i3d");
 end;	
 	
 function winch:delete()
@@ -74,10 +76,10 @@ function winch:update(dt)
 end;
 
 function winch:updateTick(dt)
-	winch:drawDebugLinefor(self.groomer, self.winchBase); 
+	-- winch:drawDebugLinefor(self.groomer, self.winchBase); 
 	-- winch:drawDebugLinefor(self.winchArm, self.cable);
 	-- winch:drawDebugLinefor(self.winchArm, self.tipPoint);
-	-- winch:drawDebugLinefor(self.winchArm, self.hook);
+	-- winch:drawDebugLinefor(self.tipPoint, self.hookpoint);
 	
 end;
 
@@ -120,36 +122,70 @@ function winch:toggleProactive(mode)
 		addToPhysics(self.winchArm) ;
 		self.noPhysicWinch = false ; 
 	else
-		-- setJointFrame(self.winchArm,1, self.winchBase);
 		--to remove it and place it at starup condition
 		removeFromPhysics(self.winchArm); 
 		self.noPhysicWinch = true ; 
 		--link(self.winchBase, self.winchArm);
 		
-		-- to add a force to the wincharm joint BUT at position defined by the last three digits, three first one being force vector
-		-- addForce(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
-		-- addImpulse(self.winchArm, self.tractionForce, 0, 0, 0, 0.87628, 4.71148, true);
 	end ; 
 end;
 
 function winch:winch_Increase()
-	if (self.tractionForce + self.tractionStep) < 46 then
-		self.tractionForce = self.tractionForce + self.tractionStep 
+	if (self.tractionForce + self.tractionStep) < ( 45*self.tractionStep ) then
+		self.tractionForce = self.tractionForce + self.tractionStep ;
 		print("winch traction force Increased : ",tostring(self.tractionForce) ) ; 
 	else 
 		print("Maximum winch traction force reached");
 	end;
-	local x,y,z = getWorldTranslation(self.tipPoint);
-	addForce(self.winchArm, self.tractionForce, 0, 0, x,y,z, true);
+	-- winch Force 
+	self:applyForceVector(self.tipPoint, self.hook) ; 
+	
+	local k,v ; 
+	print(string.format("Attachables has %d elements",table.getn(g_currentMission.attachables)));
+	for k,v in pairs(g_currentMission.attachables) do
+		print(k.." "..tostring(v).." "..type(v))
+	end
+	for k, v in pairs(g_currentMission.vehicles) do
+		print(k.." "..tostring(v).." "..type(v))
+	end;
 end;
 
 function winch:winch_Decrease()
 	if self.tractionForce - self.tractionStep >= 0 then
-		self.tractionForce = self.tractionForce - self.tractionStep 
+		self.tractionForce = self.tractionForce - self.tractionStep ;
 		print("winch traction force Decreased : ",tostring(self.tractionForce) ) ; 
 	else
 		print("Minimum winch traction force reached");
 	end ;
+	-- winch Force 
+	self:applyForceVector(self.tipPoint, self.hook) ; 
+end;
+
+function winch:applyForceVector(startComponent, endComponent)
+	local vx, vy, vz, x ,y, z, dx, dy, dz = 0,0,0,0,0,0,0,0,0 ;
+	x,y,z 		= getWorldTranslation(startComponent) ; 
+	dx,dy,dz 	= getWorldTranslation(endComponent) ; 
+	-- print(string.format("start : %.2f %.2f %.2f",x, y, z)) ; 
+	-- print(string.format("end : %.2f %.2f %.2f",dx, dy, dz)) ; 
+	vx = dx - x ; 
+	vy = dy - y; 
+	vz = dz - z ; 
+	local len = Utils.vector3Length(vx, vy, vz);
+	--
+	if len ~= 0 then
+		vx = vx / len ;
+		vy = vy / len ;
+		vz = vz / len ;
+	end;
+	--
+	-- print(string.format("Avant force : %.2f %.2f %.2f",vx, vy, vz)) ; 
+	vx = vx * self.tractionForce ;
+	vy = vy * self.tractionForce ;
+	vz = vz * self.tractionForce ;
+	--
+	-- print(string.format("After force : %.2f %.2f %.2f",vx, vy, vz)) ; 
+	--
+	addForce(self.winchArm, vx, vy, vz, x, y, z, true); 
 end;
 
 function winch:onLeave()

@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 
 <i3D name="pisten600_1" version="1.6" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://i3d.giants.ch/schema/i3d-1.6.xsd">
+  <Asset>
+    <Export program="GIANTS Editor" version="4.1.9"/>
+  </Asset>
 
   <Files>
-    <File fileId="1" filename="textures/pistenbully600_normal.dds" relativePath="true"/>
   </Files>
 
+
   <Materials>
-    <Material name="lambert1" materialId="2" diffuseColor="0.5 0.5 0.5 1" specularColor="0 0 0" ambientColor="0.0977493 0.0977493 0.0977493">
-      <Normalmap fileId="1"/>
+    <Material name="lambert1" materialId="70" diffuseColor="0.494118 0.494118 0.494118 1" ambientColor="0.0977493 0.0977493 0.0977493">
     </Material>
-    <Material name="orange" materialId="1" diffuseColor="0.949 0.4593 0.175565 1" cosPower="20" specularColor="0.5 0.5 0.5" ambientColor="1 1 1">
+    <Material name="orange" materialId="73" diffuseColor="0.941177 0.458824 0.168627 1" ambientColor="1 1 1" cosPower="20" specularColor="0.5 0.5 0.5">
     </Material>
   </Materials>
 
 
   <Shapes>
-    <IndexedTriangleSet name="polySurfaceShape3" shapeId="1" bvCenter="-0.0100468 1.0428 -0.0480942" bvRadius="1.54615" isOptimized="true">
+    <IndexedTriangleSet name="polySurfaceShape3" shapeId="1" bvCenter="-0.0100468 1.0428 -0.0480942" bvRadius="1.54615">
       <Vertices count="1431" normal="true" uv0="true" uv1="true" uv2="true" uv3="true" tangent="true">
         <v p="0.798351 0.00931051 0.21457" n="-0.951057 0 -0.309017" t0="0.05 0.833333" t1="0.05 0.833333" t2="0.05 0.833333" t3="0.05 0.833333"/>
         <v p="0.839953 0.900942 -0.0480943" n="-1 0 -9.06309e-007" t0="0 1" t1="0 1" t2="0 1" t3="0 1"/>
@@ -2047,34 +2049,21 @@
     </IndexedTriangleSet>
   </Shapes>
 
+
+  <Dynamics>
+  </Dynamics>
+
   <Scene>
-    <TransformGroup name="pCylinder2" translation="0.0018606 1.11568 3.66619" rotation="-22.9999 0 0" nodeId="1">
-      <TransformGroup name="transform4" visibility="false" nodeId="2"/>
-    </TransformGroup>
-    <TransformGroup name="pCylinder9" translation="0.00168518 0.0267921 3.64794" nodeId="3">
-      <TransformGroup name="transform6" visibility="false" nodeId="4"/>
-    </TransformGroup>
-    <TransformGroup name="pCylinder10" translation="0.0018606 1.11568 3.66619" rotation="-22.9999 120 0" nodeId="5">
-      <TransformGroup name="transform3" visibility="false" nodeId="6"/>
-    </TransformGroup>
-    <TransformGroup name="pCylinder11" translation="-0.335955 1.19504 3.47115" rotation="157 -60 180" scale="1 1 1" nodeId="7">
-      <TransformGroup name="transform2" visibility="false" nodeId="8"/>
-    </TransformGroup>
-    <TransformGroup name="pTorus1" translation="0.00872841 2.33887 3.67141" scale="0.444416 0.798031 0.444416" nodeId="9">
-      <TransformGroup name="transform1" visibility="false" nodeId="10"/>
-    </TransformGroup>
-    <TransformGroup name="polySurface1" nodeId="11">
-      <TransformGroup name="transform5" visibility="false" nodeId="12"/>
-    </TransformGroup>
-    <TransformGroup name="polySurface2" translation="0 0 -0.0389009" nodeId="13">
-      <TransformGroup name="transform7" visibility="false" nodeId="14"/>
-    </TransformGroup>
-    <TransformGroup name="pPipe1" translation="-0.0100469 0.455126 -0.0480943" rotation="90 0 0" nodeId="15">
-      <TransformGroup name="transform8" visibility="false" nodeId="16"/>
-    </TransformGroup>
-    <Shape name="polySurface3" shapeId="1" static="true" castsShadows="true" receiveShadows="true" materialIds="1, 2" nodeId="17"/>
+    <Shape name="pylons" static="true" density="100" nodeId="77" materialIds="73, 70" shapeId="1" castsShadows="true" receiveShadows="true">
+      <TransformGroup name="attacher" translation="0 2.34155 0" rotation="0 90 0" nodeId="82"/>
+    </Shape>
+    <Light name="light" rotation="-40 0 -30" nodeId="78" type="directional" diffuseColor="1 1 1" emitDiffuse="true" specularColor="1 1 1" emitSpecular="true" castShadowMap="true" depthMapBias="0.0012" depthMapSlopeScaleBias="2" depthMapSlopeClamp="0.0005" depthMapResolution="1024" shadowFarDistance="80" shadowTextureOffset="0.45" shadowExtrusionDistance="200" shadowPerspective="false" decayRate="4" range="500"/>
   </Scene>
 
   <UserAttributes>
+    <UserAttribute nodeId="82">
+      <Attribute name="onCreate" type="scriptCallback" value="create"/>
+    </UserAttribute>
   </UserAttributes>
+
 </i3D>
