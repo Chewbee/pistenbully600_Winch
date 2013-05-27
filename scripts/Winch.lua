@@ -37,8 +37,6 @@ function winch:load(xmlFile)
 	self.cable		= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.movingPart#index")); --self.components[3].node;
 	self.hook		= self.components[4].node;
 	self.hookpoint	= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.attacherPoint#index"));
-	-- the cable objet (not physics) to scale)
-	-- cableUnit = loadI3DFile("resources/cableUnit.i3d");
 end;	
 	
 function winch:delete()
@@ -139,12 +137,6 @@ function winch:winch_Increase()
 	end;
 	-- winch Force 
 	self:applyForceVector(self.tipPoint, self.hook) ; 
-	
-	local k,v ; 
-	print(string.format("Attachables has %d elements",table.getn(g_currentMission.attachables)));
-	for k,v in pairs(g_currentMission.attachables) do
-		print(k.." "..tostring(v).." "..type(v))
-	end
 end;
 
 function winch:winch_Decrease()

@@ -139,6 +139,14 @@
     </movingParts>
     <springs movingPart1="1>1|0"  />
 	
+	<mouseControls>
+		<mouseControl iconFilename="$dataS2/menu/mouseControlsHelp/tool_sc_horizontal.png" mouseButton="RIGHT" mouseAxis="X" axis="AXIS_WHINCH_ROT_LEFTRIGHT" />
+	</mouseControls>
+	<movingTools>
+		<movingTool index="1>" anchorActor="0" rotationAxis="2" rotSpeed="40" rotAcceleration="250" rotMax="720" rotMin="-720" axis="AXIS_WHINCH_ROT_LEFTRIGHT" invertAxis="true" mouseAxis="AXIS_WHINCH_ROT_LEFTRIGHT" invertMouseAxis="true" speedFactor="0.3"></movingTool>
+	</movingTools>
+
+
     <components count="4">
         <component1 centerOfMass="0 0 0" 			solverIterationCount="1" />
 		<component2 centerOfMass="0 0 0" 			solverIterationCount="1" />
