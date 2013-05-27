@@ -116,15 +116,15 @@ function winch:toggleProactive(mode)
 		cosPhi = Utils.dotProduct(gx, gy, gz, px, py, pz);
 		print(string.format("Phi %f",math.deg(math.acos(cosPhi)))) ; 
 		
-		unlink(self.winchArm);
-		link(g_currentMission:getRootNode(), self.winchArm) ;
-		setJointFrame(self.winchArm,0, self.winchBase);
-		addToPhysics(self.winchArm) ;
+		-- unlink(self.winchArm);
+		-- link(g_currentMission:getRootNode(), self.winchArm) ;
+		-- setJointFrame(self.winchArm,0, self.winchBase);
+		-- addToPhysics(self.winchArm) ;
 		self.noPhysicWinch = false ; 
 	else
 		--to remove it and place it at starup condition
-		removeFromPhysics(self.winchArm); 
-		self.noPhysicWinch = true ; 
+		-- removeFromPhysics(self.winchArm); 
+		-- self.noPhysicWinch = true ; 
 		--link(self.winchBase, self.winchArm);
 		
 	end ; 
@@ -145,9 +145,6 @@ function winch:winch_Increase()
 	for k,v in pairs(g_currentMission.attachables) do
 		print(k.." "..tostring(v).." "..type(v))
 	end
-	for k, v in pairs(g_currentMission.vehicles) do
-		print(k.." "..tostring(v).." "..type(v))
-	end;
 end;
 
 function winch:winch_Decrease()
