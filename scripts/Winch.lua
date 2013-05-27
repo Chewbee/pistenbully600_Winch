@@ -46,9 +46,12 @@ function winch:mouseEvent(posX, posY, isDown, isUp, button)
 	
 	if (isUp and button == 3 ) then
 		simulatePhysics(true);
+		setRigidBodyType(self.winchArm, "Dynamic")
 	end
 	if (isDown and button == 3) then
 		simulatePhysics( false );
+		setRigidBodyType(self.winchArm, "Kinematic");
+		setJointFrame(self.winchArm,0, self.winchBase) ;
 		-- print(string.format("Mouse %s",tostring(button))) ; 
 	end
 end;
@@ -72,6 +75,9 @@ function winch:update(dt)
 		end;
 	end;
 	
+	-- winch Force 
+	-- self:applyForceVector(self.tipPoint, self.hook) ; 
+
 	--setJointFrame(self.winchArm,1, self.winchBase);
 	local x,y,z = getWorldTranslation(self.winchBase);
 	local a,b,c = getWorldRotation(self.winchBase);

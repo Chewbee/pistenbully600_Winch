@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+	@Name: DynamicExhaustingSystemShader
+	@Info: Shader for a dynamic exhausting system
+	@Author: Manuel Leithner
+	@Team:	SFM-Modding
+	@Date:	01/06/2010
+-->
+<CustomShader version="1.0" classRequirement="">
+    <LodLevel startDistance="0">
+        <Parameters>
+            <Parameter name="exhaustingSystem" target="In.mat.exhaustingSystem" type="float4" />
+        </Parameters>				
+        <CodeInjections>
+            <CodeInjection position="MATERIALINFO">
+<![CDATA[
+uniform float4 exhaustingSystem;
+]]>
+            </CodeInjection>
+            <CodeInjection position="EMISSIVE_FS">
+<![CDATA[
+oColor.x = In.mat.exhaustingSystem.x;
+oColor.y = In.mat.exhaustingSystem.y;
+oColor.z = In.mat.exhaustingSystem.z;
+oColor.w *= In.mat.exhaustingSystem.w;
+]]>
+	        </CodeInjection>
+        </CodeInjections>
+    </LodLevel>
+</CustomShader>
