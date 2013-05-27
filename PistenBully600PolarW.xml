@@ -39,9 +39,9 @@
         </crawler>
     </crawlers>
 
-    <motor compensateWheelRadius="true" minRpm="40" maxRpm="430 600 697" maxTorques="-1 -1 -1" brakeForce="18" lowBrakeForceScale="0.5" lowBrakeForceSpeedLimit="1" accelerations="1 1 1" forwardGearRatio="9" backwardGearRatio="9" differentialRatio="1" rpmFadeOutRange="20">
+    <motor compensateWheelRadius="true" minRpm="40" maxRpm="430 620 750" maxTorques="-1 -1 -1" brakeForce="18" lowBrakeForceScale="0.5" lowBrakeForceSpeedLimit="1" accelerations="1 1 1" forwardGearRatio="9" backwardGearRatio="9" differentialRatio="1" rpmFadeOutRange="20">
 		<torque rpm="40" torque="35.0"/>
-		<torque rpm="697" torque="20.0"/>
+		<torque rpm="750" torque="30.0"/>
 		<torque rpm="832" torque="0.0"/>
 
 		<backwardTorque rpm="40" torque="35"/>
@@ -49,11 +49,11 @@
 		<backwardTorque rpm="450" torque="0.0"/>
     </motor>
 
-    <snowcat size="3" limitedRpm="600" limitedRpmSlow="430" />
+    <snowcat size="3" limitedRpm="620" limitedRpmSlow="430" />
 
     <accelerationSpeed maxAcceleration="0.17" deceleration="0.25" backwardDeceleration="0.7" />
-    <fuelCapacity>220</fuelCapacity>
-    <fuelUsage>0.0035</fuelUsage>
+    <fuelCapacity>275</fuelCapacity>
+    <fuelUsage>0.0040</fuelUsage>
     <downForce>7</downForce>
 
     <cameras count="2">
