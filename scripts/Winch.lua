@@ -43,6 +43,14 @@ function winch:delete()
 end;
 
 function winch:mouseEvent(posX, posY, isDown, isUp, button)
+	
+	if (isUp and button == 3 ) then
+		simulatePhysics(true);
+	end
+	if (isDown and button == 3) then
+		simulatePhysics( false );
+		-- print(string.format("Mouse %s",tostring(button))) ; 
+	end
 end;
 
 function winch:keyEvent(unicode, sym, modifier, isDown)
@@ -146,8 +154,7 @@ function winch:winch_Decrease()
 	else
 		print("Minimum winch traction force reached");
 	end ;
-	-- winch Force 
-	self:applyForceVector(self.tipPoint, self.hook) ; 
+	
 end;
 
 function winch:applyForceVector(startComponent, endComponent)
