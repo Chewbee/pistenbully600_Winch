@@ -24,6 +24,8 @@ function winch:load(xmlFile)
 	self.toggleProactive		= winch.toggleProactive;
 	self.winch_Increase			= winch.winch_Increase  ;
 	self.winch_Decrease			= winch.winch_Decrease  ;
+	self.winch_TurnLeft			= winch.winch_TurnLeft ;
+	self.winch_TurnRight		= winch.winch_TurnRight ; 
 	self.applyForceVector		= winch.applyForceVector ;
 	-- the winch variables
 	self.proActiveMode = false ; 
@@ -32,8 +34,8 @@ function winch:load(xmlFile)
 	self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
 	-- the skeleton parts
 	self.groomer	= self.components[1].node; 
-	self.winchArm	= Utils.indexToObject(self.components, "0>30"); --self.components[2].node;
-	self.cable		= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.movingPart#index")); --self.components[3].node;
+	self.winchArm	= self.components[2].node;
+	self.cable		= self.components[3].node;
 	-- self.hook		= Utils.indexToObject(self.components, "0>30|0|1|0|0|0"); --self.components[4].node;
 	self.hookpoint	= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.attacherPoint#index"));
 end;	
@@ -42,6 +44,7 @@ function winch:delete()
 end;
 
 function winch:mouseEvent(posX, posY, isDown, isUp, button)
+	
 end;
 
 function winch:keyEvent(unicode, sym, modifier, isDown)
@@ -60,6 +63,14 @@ function winch:update(dt)
 		-- winch_Decrease
 		if InputBinding.hasEvent(InputBinding.winch_Decrease) then					
 			self:winch_Decrease();
+		end;
+		-- winch_TurnLeft
+		if InputBinding.hasEvent(InputBinding.winch_TurnLeft) then					
+			self:winch_TurnLeft();
+		end;
+		-- winch_TurnRight
+		if InputBinding.hasEvent(InputBinding.winch_TurnRight) then					
+			self:winch_TurnRight();
 		end;
 	end;
 	
@@ -80,6 +91,8 @@ end;
 
 function winch:draw()
 	g_currentMission:addHelpButtonText(g_i18n:getText("winch_Proactive_Toggle"), InputBinding.winch_Proactive_Toggle);
+	g_currentMission:addHelpButtonText(g_i18n:getText("winch_TurnLeft"), InputBinding.winch_TurnLeft);
+	g_currentMission:addHelpButtonText(g_i18n:getText("winch_TurnRight"), InputBinding.winch_TurnRight);
 	g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase).."/"..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)..":"..g_i18n:getText("winch_Torque").."("..self.tractionForce..")");
 end;
 
@@ -128,6 +141,20 @@ function winch:winch_Decrease()
 		print("Minimum winch traction force reached");
 	end ;
 	
+end;
+
+function winch:winch_TurnLeft()
+	local x,y,z = getWorldTranslation(self.tipPoint) ; 
+	addForce(self.winchArm,1,0,0,x,y,z,true) ;
+	-- addForce(self.winchArm, 10, 0, 0, 0, 0.87628, 4.71148, true);
+	print("winch_TurnLeft");
+end ;
+
+function winch:winch_TurnRight()
+	local x,y,z = getWorldTranslation(self.tipPoint) ; 
+	addForce(self.winchArm,-1,0,0,x,y,z,true) ; 
+	-- addForce(self.winchArm, -10, 0, 0, 0, 0.87628, 4.71148, true);
+	print("winch_TurnRight");
 end;
 
 function winch:applyForceVector(startComponent, endComponent)

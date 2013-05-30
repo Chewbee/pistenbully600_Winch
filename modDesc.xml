@@ -39,6 +39,16 @@
 			<en>Reduire la traction du treuil</en>
             <de>Reduire la traction du treuil</de>
         </text>
+		<text name="winch_TurnLeft">
+            <fr>Tourelle vers la gauche</fr>
+			<en>Turn winch left</en>
+            <de>Winde nach Links</de>
+        </text>
+		<text name="winch_TurnRight">
+            <fr>Tourelle vers la droite</fr>
+			<en>Turn winch right</en>
+            <de>Winde nach Rechts</de>
+        </text>
     </l10n>
     <description>
         <en>PistenBully 600 Polar winch</en>
@@ -108,6 +118,8 @@
 		<input name="TOWING_AttachObject"	key1="KEY_KP_2" button="" /> 
 		<input name="winch_Proactive_Toggle" category="VEHICLE" key1="KEY_b" key2="" button="" device="0" mouse="" />
 		<input name="winch_Increase" 		category="VEHICLE" key1="KEY_j" key2="" button="" device="0" mouse="" />
-		<input name="winch_Decrease" 		category="VEHICLE" key1="KEY_n" key2="" button="" device="0" mouse="" />	
+		<input name="winch_Decrease" 		category="VEHICLE" key1="KEY_n" key2="" button="" device="0" mouse="" />
+		<input name="winch_TurnLeft" 		category="VEHICLE" key1="KEY_KP_1" key2="" button="1" device="0" mouse="" />
+		<input name="winch_TurnRight" 		category="VEHICLE" key1="KEY_KP_3" key2="" button="3" device="0" mouse="" />
    </inputBindings>	
 </modDesc>
