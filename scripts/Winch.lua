@@ -15,6 +15,7 @@
 winch = {};
 
 function winch.prerequisitesPresent(specializations)
+	print("specialization winch by Chewbee");
     return true;
 end;
 
@@ -29,13 +30,11 @@ function winch:load(xmlFile)
 	self.tractionForce = 0 ;
 	self.tractionStep = 1 ;
 	self.tipPoint = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.tipPoint#index"));
-	self.winchBase = Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.winchBase#index"));
-	self.noPhysicWinch = false ; 
 	-- the skeleton parts
 	self.groomer	= self.components[1].node; 
-	self.winchArm	= self.components[2].node;
+	self.winchArm	= Utils.indexToObject(self.components, "0>30"); --self.components[2].node;
 	self.cable		= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.movingPart#index")); --self.components[3].node;
-	self.hook		= self.components[4].node;
+	-- self.hook		= Utils.indexToObject(self.components, "0>30|0|1|0|0|0"); --self.components[4].node;
 	self.hookpoint	= Utils.indexToObject(self.components, getXMLString(xmlFile,"vehicle.attacherPoint#index"));
 end;	
 	
@@ -43,17 +42,6 @@ function winch:delete()
 end;
 
 function winch:mouseEvent(posX, posY, isDown, isUp, button)
-	
-	if (isUp and button == 3 ) then
-		simulatePhysics(true);
-		setRigidBodyType(self.winchArm, "Dynamic")
-	end
-	if (isDown and button == 3) then
-		simulatePhysics( false );
-		setRigidBodyType(self.winchArm, "Kinematic");
-		setJointFrame(self.winchArm,0, self.winchBase) ;
-		-- print(string.format("Mouse %s",tostring(button))) ; 
-	end
 end;
 
 function winch:keyEvent(unicode, sym, modifier, isDown)
@@ -76,21 +64,10 @@ function winch:update(dt)
 	end;
 	
 	-- winch Force 
-	-- self:applyForceVector(self.tipPoint, self.hook) ; 
-
-	--setJointFrame(self.winchArm,1, self.winchBase);
-	local x,y,z = getWorldTranslation(self.winchBase);
-	local a,b,c = getWorldRotation(self.winchBase);
-	if self.noPhysicWinch then
-		setTranslation(self.winchArm,x,y,z);
-		setRotation(self.winchArm,a,b,c);
-	end ; 
+	-- self:applyForceVector(self.tipPoint, self.hookpoint) ; 
 end;
 
 function winch:updateTick(dt)
-	-- winch:drawDebugLinefor(self.groomer, self.winchBase); 
-	-- winch:drawDebugLinefor(self.winchArm, self.cable);
-	-- winch:drawDebugLinefor(self.winchArm, self.tipPoint);
 	-- winch:drawDebugLinefor(self.tipPoint, self.hookpoint);
 	
 end;
@@ -103,7 +80,6 @@ end;
 
 function winch:draw()
 	g_currentMission:addHelpButtonText(g_i18n:getText("winch_Proactive_Toggle"), InputBinding.winch_Proactive_Toggle);
-	--g_currentMission:addHelpButtonText(g_i18n:getText("winch_Torque"),string.format("%s / %s",InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase),InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)));
 	g_currentMission:addExtraPrintText(InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Increase).."/"..InputBinding.getKeyNamesOfDigitalAction(InputBinding.winch_Decrease)..":"..g_i18n:getText("winch_Torque").."("..self.tractionForce..")");
 end;
 
@@ -128,16 +104,7 @@ function winch:toggleProactive(mode)
 		cosPhi = Utils.dotProduct(gx, gy, gz, px, py, pz);
 		print(string.format("Phi %f",math.deg(math.acos(cosPhi)))) ; 
 		
-		-- unlink(self.winchArm);
-		-- link(g_currentMission:getRootNode(), self.winchArm) ;
-		-- setJointFrame(self.winchArm,0, self.winchBase);
-		-- addToPhysics(self.winchArm) ;
-		self.noPhysicWinch = false ; 
 	else
-		--to remove it and place it at starup condition
-		-- removeFromPhysics(self.winchArm); 
-		-- self.noPhysicWinch = true ; 
-		--link(self.winchBase, self.winchArm);
 		
 	end ; 
 end;
@@ -150,7 +117,7 @@ function winch:winch_Increase()
 		print("Maximum winch traction force reached");
 	end;
 	-- winch Force 
-	self:applyForceVector(self.tipPoint, self.hook) ; 
+	self:applyForceVector(self.tipPoint, self.hookpoint) ; 
 end;
 
 function winch:winch_Decrease()
