@@ -65,10 +65,10 @@
     </cameras>
 
 	<attachSound file="$data/sounds/attach.wav" pitchOffset="1" />
-    <motorStartSound file="pistenbully_600_start.wav" pitchOffset="0.85" volume="1" />
-    <motorSound file="pistenbully_600_idle.wav" pitchOffset="0.85" pitchScale="0.009" pitchMax="1.25" volume="1" />
-	<motorSoundRun file="PB400_onfull.wav" pitchOffset="0.85" pitchScale="0.009" pitchMax="1" volume="1" />
-    <motorStopSound file="pistenbully_600_stop.wav" pitchOffset="0.85" />
+    <motorStartSound file="sounds/pistenbully_600_start.wav" pitchOffset="0.85" volume="1" />
+    <motorSound file="sounds/pistenbully_600_idle.wav" pitchOffset="0.85" pitchScale="0.009" pitchMax="1.25" volume="1" />
+	<motorSoundRun file="sounds/PB400_onfull.wav" pitchOffset="0.85" pitchScale="0.009" pitchMax="1" volume="1" />
+    <motorStopSound file="sounds/pistenbully_600_stop.wav" pitchOffset="0.85" />
 	<reverseDriveSound file="$data/sounds/reverseDrivingBeep.wav" volume="0.5" />
     <honkSound file="$data/sounds/horn.wav" client="$data/sounds/horn3D.wav" volume="1" radius="80" innerRadius="35" />
 	<cylinderedHydraulicSound file="$data/sounds/hydraulics.wav" pitchOffset="0.8" volume="0.4" />
@@ -139,12 +139,12 @@
     </movingParts>
     <springs movingPart1="1>1|0"  />
 	
-	<mouseControls>
+	<!--mouseControls>
 		<mouseControl iconFilename="$dataS2/menu/mouseControlsHelp/tool_sc_horizontal.png" mouseButton="RIGHT" mouseAxis="X" axis="AXIS_WHINCH_ROT_LEFTRIGHT" />
 	</mouseControls>
 	<movingTools>
-		<movingTool index="1>" anchorActor="0" rotationAxis="2" rotSpeed="40" rotAcceleration="250" rotMax="720" rotMin="-720" axis="AXIS_WHINCH_ROT_LEFTRIGHT" invertAxis="true" mouseAxis="AXIS_WHINCH_ROT_LEFTRIGHT" invertMouseAxis="true" speedFactor="0.3"></movingTool>
-	</movingTools>
+		<movingTool index="1>" anchorActor="1>" rotationAxis="2" rotSpeed="40" rotAcceleration="250" rotMax="720" rotMin="-720" axis="AXIS_WHINCH_ROT_LEFTRIGHT" invertAxis="true" mouseAxis="AXIS_WHINCH_ROT_LEFTRIGHT" invertMouseAxis="true" speedFactor="0.3"></movingTool>
+	</movingTools-->
 
 
     <components count="4">
@@ -152,11 +152,14 @@
 		<component2 centerOfMass="0 0 0" 			solverIterationCount="10" />
 		<component3 centerOfMass="0 -0.09838 0" 	solverIterationCount="10" />
 		<component4 centerOfMass="0 -0.36 -0.031" 	solverIterationCount="10" />
-		<joint component1="1" component2="0" index="1>"	rotLimit="0 180 0"	transLimit="0 0 0" />
+		<joint component1="1" component2="0" index="1>"	rotLimit="0 180 0"	transLimit="0 0 0" breakable="false" />
 		<!--
 		<joint component1="2" component2="1" index="2>"	rotLimit="0 0 0"	transLimit="0 0.01 0" />
 		<joint component1="3" component2="2" index="3>"	rotLimit="0 30 0"	transLimit="0 0 0" />
 		-->
-		<joint component1="3" component2="1" index="3>" rotLimit="5 0 5" transLimit="0 0 0" />
+		<joint component1="3" component2="1" index="3>" rotLimit="5 0 5" transLimit="0 0 0" breakable="false" />
+		
+		<collisionPair component1="1" component2="0" enabled="false"/>
+		<collisionPair component1="3" component2="1" enabled="false"/>
     </components>
 </vehicle>
