@@ -79,7 +79,7 @@ function winch:update(dt)
 end;
 
 function winch:updateTick(dt)
-	winch:drawDebugLinefor(self.winchArm, self.tipPoint);
+	-- winch:drawDebugLinefor(self.winchArm, self.tipPoint);
 	
 end;
 
@@ -145,13 +145,13 @@ end;
 
 function winch:winch_TurnLeft()
 	local x,y,z = getWorldTranslation(self.tipPoint) ; 
-	addForce(self.winchArm,-1,0,0,x,y,z,false) ;
+	addForce(self.winchArm,-1,0,0,x,y,z,true) ;
 	-- print("winch_TurnLeft");
 end ;
 
 function winch:winch_TurnRight()
 	local x,y,z = getWorldTranslation(self.tipPoint) ; 
-	addForce(self.winchArm,1,0,0,x,y,z,false) ; 
+	addForce(self.winchArm,1,0,0,x,y,z,true) ; 
 	-- print("winch_TurnRight");
 	
 	for k,v in pairs(self. componentJoints) do

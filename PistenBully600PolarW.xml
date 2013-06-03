@@ -153,13 +153,12 @@
 		<component3 centerOfMass="0 -0.09838 0" 	solverIterationCount="10" />
 		<component4 centerOfMass="0 -0.36 -0.031" 	solverIterationCount="10" />
 		<joint component1="1" component2="0" index="1>"	rotLimit="0 180 0"	transLimit="0 0 0" breakable="false" />
-		<!--
 		<joint component1="2" component2="1" index="2>"	rotLimit="0 0 0"	transLimit="0 0.01 0" />
 		<joint component1="3" component2="2" index="3>"	rotLimit="0 30 0"	transLimit="0 0 0" />
-		-->
-		<joint component1="3" component2="1" index="3>" rotLimit="5 0 5" transLimit="0 0 0" breakable="false" />
 		
-		<collisionPair component1="1" component2="0" enabled="false"/>
-		<collisionPair component1="3" component2="1" enabled="false"/>
+		<!--joint component1="3" component2="1" index="3>" rotLimit="5 0 5" transLimit="0 0 0" breakable="false" /-->
+		
+		<!--collisionPair component1="1" component2="0" enabled="false"/>
+		<collisionPair component1="3" component2="1" enabled="false"/-->
     </components>
 </vehicle>
