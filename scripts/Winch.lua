@@ -144,18 +144,21 @@ function winch:winch_Decrease()
 end;
 
 function winch:winch_TurnLeft()
-	local x,y,z = getWorldTranslation(self.tipPoint) ; 
+	local x,y,z = getTranslation(self.tipPoint) ; 
 	addForce(self.winchArm,-1,0,0,x,y,z,true) ;
 	-- print("winch_TurnLeft");
 end ;
 
 function winch:winch_TurnRight()
-	local x,y,z = getWorldTranslation(self.tipPoint) ; 
+	local x,y,z = getTranslation(self.tipPoint) ; 
 	addForce(self.winchArm,1,0,0,x,y,z,true) ; 
 	-- print("winch_TurnRight");
 	
 	for k,v in pairs(self. componentJoints) do
 		print(string.format("%s %s", tostring(k),tostring(v)));
+		for kk,vv in pairs(v) do
+			print(string.format("%s %s", tostring(kk),tostring(kv)));
+		end;
 	end;
 end;
 
