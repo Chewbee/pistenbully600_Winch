@@ -1,9 +1,6 @@
 --
 -- winch
 -- 
--- 
---
---
 -- @author:		Chewbee
 -- @version:	v0.1
 -- @date:		25/4/2013
@@ -79,13 +76,12 @@ function winch:update(dt)
 end;
 
 function winch:updateTick(dt)
-	-- winch:drawDebugLinefor(self.winchArm, self.tipPoint);
-	
 end;
 
 function winch:drawDebugLinefor(startComponent, endComponent)
 	local x,y,z = getWorldTranslation(startComponent); 
 	local dx,dy,dz = getWorldTranslation(endComponent); 
+	
 	drawDebugLine( x,y,z, 1, 0, 0, dx,dy,dz, 0, 1, 0);
 end;
 
@@ -125,7 +121,6 @@ end;
 function winch:winch_Increase()
 	if (self.tractionForce + self.tractionStep) < ( 45*self.tractionStep ) then
 		self.tractionForce = self.tractionForce + self.tractionStep ;
-		print("winch traction force Increased : ",tostring(self.tractionForce) ) ; 
 	else 
 		print("Maximum winch traction force reached");
 	end;
@@ -136,7 +131,6 @@ end;
 function winch:winch_Decrease()
 	if self.tractionForce - self.tractionStep >= 0 then
 		self.tractionForce = self.tractionForce - self.tractionStep ;
-		print("winch traction force Decreased : ",tostring(self.tractionForce) ) ; 
 	else
 		print("Minimum winch traction force reached");
 	end ;
@@ -154,10 +148,10 @@ function winch:winch_TurnRight()
 	addForce(self.winchArm,1,0,0,x,y,z,true) ; 
 	-- print("winch_TurnRight");
 	
-	for k,v in pairs(self. componentJoints) do
+	for k,v in pairs(self.componentJoints) do
 		print(string.format("%s %s", tostring(k),tostring(v)));
 		for kk,vv in pairs(v) do
-			print(string.format("%s %s", tostring(kk),tostring(kv)));
+			print(string.format("%s %s", tostring(kk),tostring(vv)));
 		end;
 	end;
 end;
